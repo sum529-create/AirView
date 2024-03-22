@@ -182,3 +182,10 @@ button,
   min-width: 100px;
   border-radius: 3px;
 }
+body {
+  background-color: #dfe4ea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0px;
+}
