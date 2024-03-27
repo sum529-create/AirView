@@ -10,25 +10,40 @@
 
   */
 export interface IAirData {
-  body: {
-    totalCount: number;
-    items: {
-      imageUrl4: string;
-      informCode: string;
-      imageUrl5: string;
-      imageUrl6: string;
-      actionKnack: object;
-      informCause: string;
-      informOverall: string;
-      informData: string;
-      informGrade: string;
-      dataTime: string;
-      imageUrl3: string;
-      imageUrl2: string;
-      imageUrl1: string;
-    }[];
-    pageNo: number;
-    numOfRows: number;
-  }[];
-  header: object;
+  imageUrl4: string;
+  informCode: string;
+  imageUrl5: string;
+  imageUrl6: string;
+  actionKnack: object;
+  informCause: string;
+  informOverall: string;
+  informData: string;
+  informGrade: string;
+  dataTime: string;
+  imageUrl3: string;
+  imageUrl2: string;
+  imageUrl1: string;
+}
+
+export interface IArpltnStatsSvc {
+  daegu: string;
+  chungnam: string;
+  incheon: string;
+  daejeon: string;
+  gyeongbuk: string;
+  sejong: string;
+  gwangju: string;
+  jeonbuk: string;
+  gangwon: string;
+  ulsan: string;
+  jeonnam: string;
+  seoul: string;
+  busan: string;
+  jeju: string;
+  chungbuk: string;
+  gyeongnam: string;
+  dataTime: string;
+  dataGubun: string;
+  gyeonggi: string;
+  itemCode: string;
 }

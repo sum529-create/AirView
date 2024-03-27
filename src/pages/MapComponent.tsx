@@ -1,13 +1,14 @@
 import { styled } from "styled-components";
 import Header from "../components/Header";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import MapOpenAQ from "../components/MapOpenAQ";
+import AirQualityOverview from "../components/AirQualityOverview";
+import AirQualityList from "../components/AirQualityList";
 
 const Container = styled.div`
   margin: 0 auto;
-  width: 576px;
   overflow: hidden;
   position: relative;
-  height: 768px;
+  height: 754px;
   background-color: #f1f2f6;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -15,30 +16,28 @@ const Container = styled.div`
 const MapArea = styled.div`
   height: 100%;
 `;
+const NationalMap = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
 
 function MapCompnent() {
   return (
     <>
       <Header />
       <Container>
+        <AirQualityList />
         <MapArea>
-          <MapContainer
-            center={[36.5, 127.5]}
-            zoom={7}
-            style={{ height: "100%", width: "100%" }}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          <NationalMap>
+            <img
+              src={process.env.PUBLIC_URL + "/bg_map_air.jpeg"}
+              alt="Background Map"
             />
-            <Marker position={[37.5665, 126.978]}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          </MapContainer>
+          </NationalMap>
+          {/* <MapOpenAQ /> real map */}
         </MapArea>
       </Container>
+      <AirQualityOverview />
     </>
   );
 }

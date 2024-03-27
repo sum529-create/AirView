@@ -13,12 +13,31 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", "true"); // 인증 정보 포함 허용
   next();
 });
-
-app.get("/api/airData", async (req, res) => {
-  const BASE_URL =
-    "https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth";
+const BASE_URL = "https://apis.data.go.kr/B552584";
+app.get("/api/getMinuDustFrcstDspth", async (req, res) => {
+  const URL = `${BASE_URL}/ArpltnInforInqireSvc/getMinuDustFrcstDspth`;
   const { returnType, numOfRows, pageNo, searchDate, informCode } = req.query;
-  const url = `${BASE_URL}?servicekey=${process.env.REACT_APP_API_KEY}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&searchDate=${searchDate}&InformCode=${informCode}`;
+  const url = `${URL}?servicekey=${process.env.REACT_APP_API_KEY}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&searchDate=${searchDate}&InformCode=${informCode}`;
+
+  try {
+    const response = await axios.get(url);
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+app.get("/api/getCtprvnMesureLIst", async (req, res) => {
+  const URL = `${BASE_URL}/ArpltnStatsSvc/getCtprvnMesureLIst`;
+  const {
+    returnType,
+    numOfRows,
+    pageNo,
+    itemCode,
+    dataGubun,
+    searchCondition,
+  } = req.query;
+  const url = `${URL}?servicekey=${process.env.REACT_APP_API_KEY}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&itemCode=${itemCode}&dataGubun=${dataGubun}&searchCondition=${searchCondition}`;
 
   try {
     const response = await axios.get(url);
