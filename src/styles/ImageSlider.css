@@ -1,0 +1,68 @@
+.image-slider {
+  position: relative;
+  width: 50%;
+  float: left;
+  padding: 0px 15px;
+}
+
+.image-slider img {
+  width: 100%;
+  height: 355px;
+}
+
+.image-slider .play_range {
+  display: block;
+  padding: 0 15px;
+  height: 40px;
+}
+.image-slider .play_range .air-map-play-btn {
+  width: 40px;
+  min-width: 40px;
+  margin-right: 10px;
+  border: none;
+  background: none;
+}
+.image-slider .play_range .air-map-play-btn .play_arrow {
+  color: #27ae60;
+  font-size: 50px;
+  position: relative;
+  top: -12px;
+  right: 18px;
+  cursor: pointer;
+}
+.image-slider .play_range .tick-marks {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 76.4%;
+  height: 15px;
+  padding-left: 65px;
+  padding-right: 16px;
+  justify-content: space-between;
+  bottom: 18px;
+}
+.image-slider .play_range .tick-marks .tick-mark-point {
+  position: relative;
+  margin: 10px 5px;
+  border-left: 1px solid #27ae60;
+  width: 1px;
+  height: 7px;
+}
+.image-slider .play_range .tick-marks .tick-mark-point span {
+  position: absolute;
+  top: 5px;
+  right: -7px;
+  color: #666;
+  font-weight: 500;
+}
+.image-slider input[type="range"] {
+  position: absolute;
+  width: 60%;
+  z-index: 1;
+  height: 12px;
+  box-shadow: inset -1px 1px 5px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background: transparent;
+  accent-color: #16a085;
+  -webkit-appearance: none;
+}

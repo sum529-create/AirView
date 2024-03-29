@@ -3,8 +3,12 @@ import Header from "../components/Header";
 import MapOpenAQ from "../components/MapOpenAQ";
 import AirQualityOverview from "../components/AirQualityOverview";
 import AirQualityList from "../components/AirQualityList";
+import TabAir from "../components/TabAir";
 
 const Container = styled.div`
+  max-width: 676px;
+`;
+const MapWrap = styled.div`
   margin: 0 auto;
   overflow: hidden;
   position: relative;
@@ -24,20 +28,23 @@ const NationalMap = styled.div`
 function MapCompnent() {
   return (
     <>
-      <Header />
       <Container>
-        <AirQualityList />
-        <MapArea>
-          <NationalMap>
-            <img
-              src={process.env.PUBLIC_URL + "/bg_map_air.jpeg"}
-              alt="Background Map"
-            />
-          </NationalMap>
-          {/* <MapOpenAQ /> real map */}
-        </MapArea>
+        <Header />
+        <TabAir />
+        <MapWrap>
+          <AirQualityList />
+          <MapArea>
+            <NationalMap>
+              <img
+                src={process.env.PUBLIC_URL + "/bg_map_air.jpeg"}
+                alt="Background Map"
+              />
+            </NationalMap>
+            {/* <MapOpenAQ /> real map */}
+          </MapArea>
+        </MapWrap>
+        <AirQualityOverview />
       </Container>
-      <AirQualityOverview />
     </>
   );
 }

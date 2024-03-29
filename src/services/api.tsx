@@ -27,7 +27,7 @@ export async function fetchTxtInfo() {
 export async function getCtprvnMesureLIst() {
   try {
     const res = await axios.get(
-      "http://localhost:5000/api/getCtprvnMesureLIst",
+      "http://localhost:5001/api/getCtprvnMesureLIst",
       {
         params: {
           returnType: "json",
@@ -39,7 +39,7 @@ export async function getCtprvnMesureLIst() {
         },
       }
     );
-    return res.data.response.body.items;
+    return res.data.response.body.items[0];
   } catch (error) {
     console.error("fetching data error");
     throw new Error("Failed to fetch data");

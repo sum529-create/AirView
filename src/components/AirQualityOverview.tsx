@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { IAirData } from "../utils/types";
 import { useQuery } from "react-query";
 import { fetchTxtInfo } from "../services/api";
+import StandbyStateMap from "./StandbyStateMap";
 
 const TodayWeatherArea = styled.div`
   position: relative;
@@ -10,7 +11,7 @@ const TodayWeatherArea = styled.div`
   padding: 10px;
   background-image: linear-gradient(60deg, #abecd6 0%, #fbed96 100%);
   border-radius: 8px;
-  margin-top: 10px;
+  margin: 10px 0;
   .todayAirTime {
     position: absolute;
     max-width: 130px;
@@ -65,12 +66,27 @@ const TodayWeatherArea = styled.div`
     }
   }
 `;
+const AirQualityImg = styled.div`
+  height: 1000px;
+  background: #fff;
+  padding: 10px;
+  .sub-title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    margin: 10px 0px;
+    color: #666;
+    padding-left: 18px;
+  }
+`;
 
 function AirQualityOverview() {
   const { isLoading, data: airTotalInfo } = useQuery<IAirData[]>(
     "airDataTxtInfo",
     fetchTxtInfo
   );
+
+  if (isLoading) return <div>Loading...</div>;
 
   const TextRotator: React.FC<{ texts: any; interval: number }> = ({
     texts,
@@ -87,28 +103,51 @@ function AirQualityOverview() {
     return <div>{texts[currentIdx]}</div>;
   };
 
-  if (isLoading) return <div>Loading...</div>;
   const texts = airTotalInfo
     ? [airTotalInfo[0].informOverall, airTotalInfo[0].informCause]
     : [];
-  const interval = 3000;
+  const images1 = airTotalInfo
+    ? [
+        airTotalInfo[0].imageUrl1,
+        airTotalInfo[0].imageUrl2,
+        airTotalInfo[0].imageUrl3,
+      ]
+    : [];
+  const images2 = airTotalInfo
+    ? [
+        airTotalInfo[0].imageUrl4,
+        airTotalInfo[0].imageUrl5,
+        airTotalInfo[0].imageUrl6,
+      ]
+    : [];
+
+  const interval = 8000;
 
   return (
-    <TodayWeatherArea>
-      {airTotalInfo && airTotalInfo.length > 0 && (
-        <>
-          <div className="todayAirTime">{airTotalInfo[0].dataTime}</div>
-          <div className="todayAirInfo">
-            <span className="todayAirInfoArea">
-              <strong>예보 발표</strong>
-              <span className="todayAirInfoTxt">
-                <TextRotator texts={texts} interval={interval} />
+    <>
+      <TodayWeatherArea>
+        {airTotalInfo && airTotalInfo.length > 0 && (
+          <>
+            <div className="todayAirTime">{airTotalInfo[0].dataTime}</div>
+            <div className="todayAirInfo">
+              <span className="todayAirInfoArea">
+                <strong>예보 발표</strong>
+                <span className="todayAirInfoTxt">
+                  <TextRotator texts={texts} interval={interval} />
+                </span>
               </span>
-            </span>
-          </div>
-        </>
-      )}
-    </TodayWeatherArea>
+            </div>
+          </>
+        )}
+      </TodayWeatherArea>
+      <AirQualityImg>
+        <p className="sub-title">대기 상태 지도</p>
+        <div className="airQuality">
+          <StandbyStateMap images={images1} state="pm10" />
+          <StandbyStateMap images={images2} state="pm2.5" />
+        </div>
+      </AirQualityImg>
+    </>
   );
 }
 
