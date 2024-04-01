@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import AirPopup from "./AirPopup";
 
 const WrapTab = styled.div`
   width: 676px;
@@ -22,11 +23,23 @@ const WrapTab = styled.div`
       padding: 7px;
       font-weight: 600;
       position: relative;
+      cursor: pointer;
       &.check_on {
         background: #21858c;
         &::after {
           display: none;
         }
+      }
+      .air_txt {
+        width: calc(100% - 14px);
+      }
+      .air_info {
+        font-size: 14px;
+        position: absolute;
+        right: 6px;
+        top: 0px;
+        height: 50px;
+        padding: 18px 0px;
       }
       span {
         display: block;
@@ -74,35 +87,125 @@ const WrapTab = styled.div`
     }
   }
 `;
+interface TabAirProps {
+  onSelectTab: (tab: string) => void;
+}
+const TabAir: React.FC<TabAirProps> = ({ onSelectTab }) => {
+  const [isSelectedTab, setIsSelectedTab] = useState("PM10");
+  const [isPopOpen, setIsPopOpen] = useState(false);
+  const openPopup = () => {
+    setIsPopOpen(true);
+  };
 
-function TabAir() {
+  const closePopup = () => {
+    setIsPopOpen(false);
+  };
+  const handleAirState = (tab: string) => {
+    // pm10: 미세먼지 , pm2.5: 초미세먼지, so2: 아황산가스, co:일산화탄소, o3:오존, no2:이산화탄소
+    onSelectTab(tab);
+    setIsSelectedTab(tab);
+  };
   return (
     <>
       <WrapTab>
         <ul className="main_tab">
-          <li className="nav_item check_on">
-            <span>PM10</span>
-            <span className="air_codeNm">(미세먼지)</span>
+          <li
+            onClick={() => handleAirState("PM10")}
+            className={
+              "nav_item" + (isSelectedTab === "PM10" ? " check_on" : "")
+            }
+          >
+            <div className="air_txt">
+              <span>PM10</span>
+              <span className="air_codeNm">(미세먼지)</span>
+            </div>
+            <span
+              onClick={openPopup}
+              className="material-symbols-outlined air_info"
+            >
+              info
+            </span>
           </li>
-          <li className="nav_item">
-            <span>PM2.5</span>
-            <span className="air_codeNm">(초미세먼지)</span>
+          <li
+            onClick={() => handleAirState("PM25")}
+            className={
+              "nav_item" + (isSelectedTab === "PM25" ? " check_on" : "")
+            }
+          >
+            <div className="air_txt">
+              <span>PM2.5</span>
+              <span className="air_codeNm">(초미세먼지)</span>
+            </div>
+            <span
+              onClick={openPopup}
+              className="material-symbols-outlined air_info"
+            >
+              info
+            </span>
           </li>
-          <li className="nav_item">
-            <span>SO2</span>
-            <span className="air_codeNm">(아황산가스)</span>
+          <li
+            onClick={() => handleAirState("SO2")}
+            className={
+              "nav_item" + (isSelectedTab === "SO2" ? " check_on" : "")
+            }
+          >
+            <div className="air_txt">
+              <span>SO2</span>
+              <span className="air_codeNm">(아황산가스)</span>
+            </div>
+            <span
+              onClick={openPopup}
+              className="material-symbols-outlined air_info"
+            >
+              info
+            </span>
           </li>
-          <li className="nav_item">
-            <span>CO</span>
-            <span className="air_codeNm">(일산화탄수)</span>
+          <li
+            onClick={() => handleAirState("CO")}
+            className={"nav_item" + (isSelectedTab === "CO" ? " check_on" : "")}
+          >
+            <div className="air_txt">
+              <span>CO</span>
+              <span className="air_codeNm">(일산화탄소)</span>
+            </div>
+            <span
+              onClick={openPopup}
+              className="material-symbols-outlined air_info"
+            >
+              info
+            </span>
           </li>
-          <li className="nav_item">
-            <span>O3</span>
-            <span className="air_codeNm">(오존)</span>
+          <li
+            onClick={() => handleAirState("O3")}
+            className={"nav_item" + (isSelectedTab === "O3" ? " check_on" : "")}
+          >
+            <div className="air_txt">
+              <span>O3</span>
+              <span className="air_codeNm">(오존)</span>
+            </div>
+            <span
+              onClick={openPopup}
+              className="material-symbols-outlined air_info"
+            >
+              info
+            </span>
           </li>
-          <li className="nav_item">
-            <span>NO2</span>
-            <span className="air_codeNm">(이산화질소)</span>
+          <li
+            onClick={() => handleAirState("NO2")}
+            className={
+              "nav_item" + (isSelectedTab === "NO2" ? " check_on" : "")
+            }
+          >
+            <div className="air_txt">
+              <span>NO2</span>
+              <span className="air_codeNm">(이산화질소)</span>
+            </div>
+            <span
+              onClick={openPopup}
+              className="material-symbols-outlined air_info"
+            >
+              info
+            </span>
           </li>
         </ul>
         <ul className="sub_tab">
@@ -111,8 +214,13 @@ function TabAir() {
           <li className="base_date">내일 03.30</li>
         </ul>
       </WrapTab>
+      <AirPopup
+        isPopOpen={isPopOpen}
+        onClose={closePopup}
+        itemCode={isSelectedTab}
+      />
     </>
   );
-}
+};
 
 export default TabAir;

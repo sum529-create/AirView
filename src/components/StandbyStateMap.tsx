@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import "../styles/ImageSlider.css";
 
 const StandbyStateMap: React.FC<{ images: any; state: string }> = ({
@@ -9,7 +9,30 @@ const StandbyStateMap: React.FC<{ images: any; state: string }> = ({
   const [isAirMapPlay, setIsAirMapPlay] = useState(false);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
   const isTimeoutActive = useRef(false);
+  const preloadedImages = useRef<HTMLImageElement[]>([]);
+  const [tickMarks, setTickMarks] = useState(["9", "15", "21"]);
 
+  useEffect(() => {
+    // 이미지 사전로딩
+    preloadedImages.current = images.map((imageUrl: any) => {
+      const img = new Image();
+      img.src = imageUrl;
+      return img;
+    });
+
+    // 현재 시간을 확인하여 오전 또는 오후에 따라 tick-mark-point를 설정
+    const now = new Date();
+    const hour = now.getHours();
+    if (hour >= 22 || hour < 9) {
+      setTickMarks(["12", "03", "09"]); // 22~09시
+    } else if (hour >= 9 && hour < 12) {
+      setTickMarks(["9", "15", "21"]); // 09~12시
+    } else if (hour >= 12 && hour < 16) {
+      setTickMarks(["12", "18", "00"]); // 12~16시
+    } else {
+      setTickMarks(["06", "12", "18"]); // 16~22시
+    }
+  }, [images]);
   const handleChange = (e: ChangeEvent<HTMLInputElement> | string) => {
     let value = 0;
     if (typeof e !== "string") value = parseFloat(e.target.value);
@@ -85,15 +108,11 @@ const StandbyStateMap: React.FC<{ images: any; state: string }> = ({
           onChange={handleChange}
         />
         <div className="tick-marks">
-          <div className="tick-mark-point">
-            <span>12</span>
-          </div>
-          <div className="tick-mark-point">
-            <span>18</span>
-          </div>
-          <div className="tick-mark-point">
-            <span>00</span>
-          </div>
+          {tickMarks.map((mark, index) => (
+            <div key={index} className="tick-mark-point">
+              <span>{mark}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

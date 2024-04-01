@@ -24,7 +24,7 @@ export async function fetchTxtInfo() {
   }
 }
 
-export async function getCtprvnMesureLIst() {
+export async function getCtprvnMesureLIst(selectedTab: string) {
   try {
     const res = await axios.get(
       "http://localhost:5001/api/getCtprvnMesureLIst",
@@ -33,7 +33,7 @@ export async function getCtprvnMesureLIst() {
           returnType: "json",
           numOfRows: 100,
           pageNo: 1,
-          itemCode: "PM10",
+          itemCode: selectedTab,
           dataGubun: "HOUR",
           searchCondition: "MONTH",
         },
