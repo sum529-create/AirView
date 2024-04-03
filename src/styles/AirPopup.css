@@ -51,7 +51,7 @@
   animation-duration: 0.5s; /* 애니메이션 지속 시간 */
   max-width: calc(100vw - 250px);
   width: 676px;
-  height: 50vh;
+  height: 65vh;
 }
 
 .popup-show .popup-content {
@@ -80,67 +80,199 @@
 .popup-content .popup-header {
   margin-bottom: 10px;
   font-weight: 600;
-  /* color: #1abc9c; */
-}
-.popup-content .popup-body .pol_standards li {
-  height: calc(100vh / 11);
+  position: relative;
+  top: -20px;
+  left: -20px;
+  width: 659px;
+  height: 50px;
   display: flex;
 }
-.popup-content .popup-body .pol_standards li:not(:first-child) {
-  margin-top: 10px;
+.popup-content .popup-header .main-title {
+  background-color: #00ccc2;
+  float: left;
+  width: 250px;
+  text-align: center;
+  font-size: 22px;
+  padding: 12px;
+  font-weight: 700;
+  box-shadow: 0 11px 14px -9px rgba(0, 0, 0, 0.4);
+  border-bottom-left-radius: 5px;
 }
-.popup-content .popup-body .pol_standards img {
-  width: 50px;
-  height: 50px;
-  margin: 15px 10px;
+.popup-content .popup-header .right_triangle {
+  rotate: 90deg;
+  position: relative;
+  height: 38px;
+  width: 67px;
+  top: 6px;
+  left: -20px;
+  filter: invert(53%) sepia(93%) saturate(1506%) hue-rotate(137deg)
+    brightness(101%) contrast(102%);
+}
+.popup-content .popup-header .triangle {
+  position: relative;
+  z-index: 1;
+  top: -5px;
+  right: 61px;
+  height: 45px;
+  filter: invert(62%) sepia(8%) saturate(2892%) hue-rotate(129deg)
+    brightness(93%) contrast(88%);
+}
+.popup-content .popup-header .sub-title {
+  /* background-color: #00ccc2; */
+  background-color: #00d6cc;
+  z-index: -1;
+  width: 200px;
+  height: 36px;
+  position: relative;
+  right: 105px;
+  text-align: center;
+  padding: 8px;
+  font-weight: 500;
+  border-bottom-right-radius: 40px;
+  box-shadow: 0 11px 14px -9px rgba(0, 0, 0, 0.4);
+}
+.popup-content .popup-body {
+  position: relative;
+  height: 52vh;
+}
+.popup-content .popup-body .pol_standards {
+  display: flex;
+}
+.popup-content .popup-body .pol_standards > li {
+  width: 30%;
+}
+.popup-content .popup-body .pol_standards .air_grade_img {
+  width: 70px;
+  height: 70px;
+  margin: 15px auto;
+  display: block;
 }
 .popup-content .popup-body .pol_standards .air_grade_info {
   margin: 0px 10px;
-  width: 100%;
-}
-.popup-content .popup-body .pol_standards .air_good {
-  border-bottom: 1px solid #00a8ff;
-}
-.popup-content .popup-body .pol_standards .air_good .air_grade_tit {
-  background: #00a8ff;
-}
-.popup-content .popup-body .pol_standards .air_normal {
-  border-bottom: 1px solid #4cd137;
-}
-.popup-content .popup-body .pol_standards .air_normal .air_grade_tit {
-  background: #4cd137;
-}
-.popup-content .popup-body .pol_standards .air_bad {
-  border-bottom: 1px solid #fbc531;
-}
-.popup-content .popup-body .pol_standards .air_bad .air_grade_tit {
-  background: #fbc531;
-}
-.popup-content .popup-body .pol_standards .air_verybad {
-  border-bottom: 1px solid #e84118;
-}
-.popup-content .popup-body .pol_standards .air_verybad .air_grade_tit {
-  background: #e84118;
+  height: 160px;
 }
 .popup-content .popup-body .pol_standards .air_grade_info .air_grade_tit {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
   padding: 3px 10px;
-  color: #fff;
 }
 .popup-content .popup-body .pol_standards .air_grade_info .air_grade_tit h2 {
   display: inline-block;
   width: 56px;
   font-weight: 700;
 }
-.popup-content .popup-body .pol_standards .air_grade_info .air_grade_tit p {
-  display: inline-block;
-  font-size: 12px;
-  margin-left: 10px;
-  font-weight: 500;
-}
 .popup-content .popup-body .pol_standards .air_grade_info .air_grade_txt {
   padding: 10px;
   font-size: 15px;
   word-break: keep-all;
+}
+.popup-content .popup-body .pol_standards .air_grade_detail {
+  margin-top: 10px;
+}
+.popup-content .popup-body .pol_standards .air_grade_detail li {
+  display: inline-block;
+}
+.popup-content .popup-body .pol_standards .air_grade_detail li img {
+  width: 30px;
+  float: left;
+}
+.popup-content .popup-body .pol_standards .air_grade_detail li span {
+  font-size: 12px;
+  margin: 7px 5px;
+}
+.popup-content .popup-body .air_grade_dir {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: -20px;
+  width: 659px;
+  height: 40px;
+  font-size: 14px;
+}
+.popup-content .popup-body .air_grade_dir div {
+  width: 30%;
+  text-align: center;
+  display: flex;
+  position: relative;
+  box-shadow: 0 11px 11px -9px rgba(0, 0, 0, 0.2);
+}
+.popup-content .popup-body .air_grade_dir .air_grade_good {
+  bottom: 20px;
+}
+.popup-content .popup-body .air_grade_dir .air_grade_normal {
+  bottom: 10px;
+}
+.popup-content .popup-body .air_grade_dir .air_grade_bad {
+  bottom: 0px;
+}
+.popup-content .popup-body .air_grade_dir .air_grade_verybad {
+  bottom: -10px;
+}
+
+.popup-content .popup-body .air_grade_dir div div {
+  text-align: center;
+  background: #fff;
+  padding-left: 22px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-weight: 600;
+}
+.popup-content .popup-body .air_grade_dir div img {
+  position: absolute;
+  height: 70px;
+  top: -24px;
+  right: -2px;
+}
+.popup-content .popup-body .air_grade_dir .air_grade_good .air_grade_good_txt {
+  width: 75%;
+  border-top: 5px solid #00a8ff;
+  border-bottom: 5px solid #00a8ff;
+  z-index: 10;
+}
+.popup-content .popup-body .air_grade_dir .air_grade_good img {
+  z-index: 9;
+  filter: invert(54%) sepia(53%) saturate(4816%) hue-rotate(175deg)
+    brightness(103%) contrast(107%);
+}
+.popup-content
+  .popup-body
+  .air_grade_dir
+  .air_grade_normal
+  .air_grade_normal_txt {
+  right: 18px;
+  width: 87%;
+  border-top: 5px solid #4cd137;
+  border-bottom: 5px solid #4cd137;
+  z-index: 8;
+}
+.popup-content .popup-body .air_grade_dir .air_grade_normal img {
+  z-index: 7;
+  filter: invert(62%) sepia(72%) saturate(495%) hue-rotate(64deg)
+    brightness(97%) contrast(88%);
+}
+.popup-content .popup-body .air_grade_dir .air_grade_bad .air_grade_bad_txt {
+  right: 18px;
+  width: 86%;
+  border-top: 5px solid #fbc531;
+  border-bottom: 5px solid #fbc531;
+  z-index: 6;
+}
+.popup-content .popup-body .air_grade_dir .air_grade_bad img {
+  z-index: 5;
+  filter: invert(74%) sepia(38%) saturate(824%) hue-rotate(350deg)
+    brightness(102%) contrast(107%);
+}
+.popup-content
+  .popup-body
+  .air_grade_dir
+  .air_grade_verybad
+  .air_grade_verybad_txt {
+  right: 18px;
+  width: 86%;
+  border-top: 5px solid #e84118;
+  border-bottom: 5px solid #e84118;
+  z-index: 4;
+}
+.popup-content .popup-body .air_grade_dir .air_grade_verybad img {
+  z-index: 3;
+  filter: invert(38%) sepia(77%) saturate(5138%) hue-rotate(355deg)
+    brightness(95%) contrast(90%);
 }

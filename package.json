@@ -57,6 +57,9 @@
     "@types/react-helmet": "^6.1.11",
     "@types/react-leaflet": "^3.0.0",
     "concurrently": "^8.2.2",
+    "node-sass": "^7.0.3",
+    "sass": "^1.72.0",
+    "sass-loader": "^14.1.1",
     "typescript": "^5.4.2"
   }
 }
