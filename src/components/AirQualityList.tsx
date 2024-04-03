@@ -450,7 +450,6 @@ const AirQualityList: React.FC<AirQualityListProps> = ({ selectedTab }) => {
         </div>
       </Loading>
     );
-  console.log(selectedTab);
 
   return (
     <AirQualityUl>
