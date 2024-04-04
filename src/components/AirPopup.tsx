@@ -53,6 +53,9 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
         {/* 팝업 내용 */}
         <div className="popup-body">
           <div className="air_definition">
+            <span className="material-symbols-outlined air_state_icon">
+              online_prediction
+            </span>
             {itemCode === "PM10" || itemCode === "PM25" ? (
               <>
                 <span className="air_definition_state">
@@ -109,6 +112,7 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
               <div className="air_grade_info air_good">
                 <div className="air_grade_tit">
                   <h2>좋음</h2>
+                  <span className="air_grade_state_mo">PM₁₀ 0~30(㎍/ m²)</span>
                 </div>
                 <div className="air_grade_txt">
                   대기오염 관련 진환자군에서도 영향이 유발되지 않을 수준
@@ -147,6 +151,7 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
               <div className="air_grade_info air_normal">
                 <div className="air_grade_tit">
                   <h2>보통</h2>
+                  <span className="air_grade_state_mo">PM₁₀ 31~80(㎍/ m²)</span>
                 </div>
                 <div className="air_grade_txt">
                   환자군에게 만성 노출시 경미한 영향이 유발될 수 있는 수준
@@ -186,6 +191,9 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
               <div className="air_grade_info air_bad">
                 <div className="air_grade_tit">
                   <h2>나쁨</h2>
+                  <span className="air_grade_state_mo">
+                    PM₁₀ 81~150(㎍/ m²)
+                  </span>
                 </div>
                 <div className="air_grade_txt">
                   환자군 및 민감군(어린이, 노약자 등)에게 유해한 영향 유발,
@@ -245,6 +253,9 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
               <div className="air_grade_info air_verybad">
                 <div className="air_grade_tit">
                   <h2>매우나쁨</h2>
+                  <span className="air_grade_state_mo">
+                    PM₁₀ 151(㎍/ m²)이상
+                  </span>
                 </div>
                 <div className="air_grade_txt">
                   한자군 및 민감군에게 급성 노출시 심각한 영향 유발, 일반인도

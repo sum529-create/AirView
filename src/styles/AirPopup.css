@@ -147,6 +147,11 @@
   box-shadow: 0 11px 11px -9px rgba(0, 0, 0, 0.2);
   margin-bottom: 7px;
 }
+.popup-content .popup-body .air_definition .air_state_icon {
+  float: left;
+  color: #218c74;
+  margin-top: -4px;
+}
 .popup-content .popup-body .air_definition .air_definition_state {
   color: #079992;
   font-weight: 700;
@@ -173,6 +178,14 @@
   display: inline-block;
   width: 56px;
   font-weight: 700;
+}
+.popup-content
+  .popup-body
+  .pol_standards
+  .air_grade_info
+  .air_grade_tit
+  .air_grade_state_mo {
+  display: none;
 }
 .popup-content .popup-body .pol_standards .air_grade_info .air_grade_txt {
   padding: 10px;
@@ -309,6 +322,48 @@
     width: 100%;
     margin: 10px 0px;
   }
+  .popup-content
+    .popup-body
+    .pol_standards
+    .air_grade_info
+    .air_grade_tit
+    .air_grade_state_mo {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .popup-content
+    .popup-body
+    .pol_standards
+    .air_good
+    .air_grade_tit
+    .air_grade_state_mo {
+    color: #00a8ff;
+  }
+  .popup-content
+    .popup-body
+    .pol_standards
+    .air_normal
+    .air_grade_tit
+    .air_grade_state_mo {
+    color: #4cd137;
+  }
+  .popup-content
+    .popup-body
+    .pol_standards
+    .air_bad
+    .air_grade_tit
+    .air_grade_state_mo {
+    color: #fbc531;
+  }
+  .popup-content
+    .popup-body
+    .pol_standards
+    .air_verybad
+    .air_grade_tit
+    .air_grade_state_mo {
+    color: #e84118;
+  }
   .popup-content .popup-body .pol_standards .air_grade_info {
     height: auto;
     width: 65%;
@@ -363,6 +418,14 @@
   }
   .popup-content .popup-body .pol_standards .air_grade_info .air_grade_tit {
     font-size: 14px;
+  }
+  .popup-content
+    .popup-body
+    .pol_standards
+    .air_grade_info
+    .air_grade_tit
+    .air_grade_state_mo {
+    font-size: 12px;
   }
   .popup-content .popup-body .pol_standards .air_grade_info .air_grade_txt {
     padding: 7px;
