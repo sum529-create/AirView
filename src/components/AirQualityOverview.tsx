@@ -105,6 +105,9 @@ const AirQualityImg = styled.div`
     margin: 10px 0px;
     color: #666;
     padding-left: 18px;
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
   }
 `;
 

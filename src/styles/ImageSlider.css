@@ -69,3 +69,10 @@
   cursor: pointer;
   -webkit-appearance: none;
 }
+@media (max-width: 768px) {
+  .image-slider {
+    float: none;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
