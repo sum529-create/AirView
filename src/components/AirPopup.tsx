@@ -36,6 +36,7 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
         {/* 팝업 제목 */}
         <div className="popup-header">
           <div className="main-title">
+            <h1 className="sub-title-mo">{itemCode} </h1>
             <h1>대기상태별 예보 등급</h1>
           </div>
           <img
@@ -104,11 +105,13 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
           </div>
           <ul className="pol_standards">
             <li>
-              <img
-                className="air_grade_img"
-                src={process.env.PUBLIC_URL + "/images/good.gif"}
-                alt="좋음"
-              />
+              <div>
+                <img
+                  className="air_grade_img"
+                  src={process.env.PUBLIC_URL + "/images/good.gif"}
+                  alt="좋음"
+                />
+              </div>
               <div className="air_grade_info air_good">
                 <div className="air_grade_tit">
                   <h2>좋음</h2>
@@ -143,11 +146,13 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
               </ul>
             </li>
             <li>
-              <img
-                className="air_grade_img"
-                src={process.env.PUBLIC_URL + "/images/normal.gif"}
-                alt="보통"
-              />
+              <div>
+                <img
+                  className="air_grade_img"
+                  src={process.env.PUBLIC_URL + "/images/normal.gif"}
+                  alt="보통"
+                />
+              </div>
               <div className="air_grade_info air_normal">
                 <div className="air_grade_tit">
                   <h2>보통</h2>
@@ -183,11 +188,13 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
               </ul>
             </li>
             <li>
-              <img
-                className="air_grade_img"
-                src={process.env.PUBLIC_URL + "/images/bad.gif"}
-                alt="나쁨"
-              />
+              <div>
+                <img
+                  className="air_grade_img"
+                  src={process.env.PUBLIC_URL + "/images/bad.gif"}
+                  alt="나쁨"
+                />
+              </div>
               <div className="air_grade_info air_bad">
                 <div className="air_grade_tit">
                   <h2>나쁨</h2>
@@ -245,11 +252,13 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
               </ul>
             </li>
             <li>
-              <img
-                className="air_grade_img"
-                src={process.env.PUBLIC_URL + "/images/very_bad.gif"}
-                alt="매우나쁨"
-              />
+              <div>
+                <img
+                  className="air_grade_img"
+                  src={process.env.PUBLIC_URL + "/images/very_bad.gif"}
+                  alt="매우나쁨"
+                />
+              </div>
               <div className="air_grade_info air_verybad">
                 <div className="air_grade_tit">
                   <h2>매우나쁨</h2>
