@@ -7,7 +7,7 @@
 
 .image-slider img {
   width: 100%;
-  height: 355px;
+  height: auto;
 }
 
 .image-slider .play_range {

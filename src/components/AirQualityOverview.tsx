@@ -65,6 +65,34 @@ const TodayWeatherArea = styled.div`
       }
     }
   }
+  @media (max-width: 768px) {
+    position: initial;
+    height: 240px;
+    .todayAirTime {
+      position: initial;
+      width: 100%;
+      max-width: none;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .todayAirInfo {
+      position: initial;
+      width: 100%;
+      padding-right: 0;
+      .todayAirInfoArea {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .todayAirInfoTxt {
+          position: initial;
+          float: none;
+          width: 100%;
+          transform: none;
+          padding: 10px;
+        }
+      }
+    }
+  }
 `;
 const AirQualityImg = styled.div`
   height: 1000px;

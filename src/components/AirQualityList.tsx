@@ -6,14 +6,21 @@ import { IArpltnStatsSvc } from "../utils/types";
 
 const AirQualityUl = styled.ul`
   position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
   .city_nm {
     font-weight: 500;
     color: #333;
   }
   a {
-    display: block;
-    width: 40px;
-    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.6vw;
+    height: calc(4.6vw);
+    max-width: 40px;
+    max-height: 40px;
     text-align: center;
     border-radius: 50px;
     background-color: #7f8fa6;
@@ -62,72 +69,106 @@ const AirQualityUl = styled.ul`
     text-align: center;
   }
   .city_seoul {
-    left: 258px;
-    top: 120px;
+    /* left: 258px;
+    top: 120px; */
+    left: 38%;
+    top: 16%;
   }
   .city_incheon {
-    top: 140px;
-    left: 210px;
+    /* top: 140px;
+    left: 210px; */
+    top: 18.45%;
+    left: 31.11%;
   }
   .city_gyeonggi {
-    top: 120px;
-    left: 320px;
+    /* top: 120px;
+    left: 320px; */
+    top: 15.5%;
+    left: 47.5%;
   }
   .city_gangwon {
-    top: 90px;
-    left: 420px;
+    /* top: 90px;
+    left: 420px; */
+    top: 11.8%;
+    left: 62.14%;
   }
   .city_chungnam {
-    top: 240px;
-    left: 195px;
+    /* top: 240px;
+    left: 195px; */
+    top: 31.6%;
+    left: 28.8%;
   }
   .city_sejong {
-    top: 245px;
-    left: 280px;
+    /* top: 245px;
+    left: 280px; */
+    top: 32.3%;
+    left: 41.4%;
   }
   .city_chungbuk {
-    top: 210px;
-    left: 360px;
+    /* top: 210px;
+    left: 360px; */
+    top: 27.5%;
+    left: 53.2%;
   }
   .city_gyeongbuk {
-    top: 260px;
-    left: 480px;
+    /* top: 260px;
+    left: 480px; */
+    top: 34.3%;
+    left: 71%;
   }
   .city_daejeon {
-    top: 310px;
-    left: 300px;
+    /* top: 310px;
+    left: 300px; */
+    top: 41%;
+    left: 44.8%;
   }
   .city_jeonbuk {
-    top: 360px;
-    left: 250px;
+    /* top: 360px;
+    left: 250px; */
+    top: 47.4%;
+    left: 37%;
   }
   .city_daegu {
-    top: 340px;
-    left: 432px;
+    /* top: 340px;
+    left: 432px; */
+    top: 44.8%;
+    left: 63.9%;
   }
   .city_ulsan {
-    top: 390px;
-    left: 500px;
+    /* top: 390px;
+    left: 500px; */
+    top: 51.4%;
+    left: 74%;
   }
   .city_gwangju {
-    top: 445px;
-    left: 240px;
+    /* top: 445px;
+    left: 240px; */
+    top: 58.7%;
+    left: 35.6%;
   }
   .city_jeonnam {
-    top: 510px;
-    left: 210px;
+    /* top: 510px;
+    left: 210px; */
+    top: 66.9%;
+    left: 31%;
   }
   .city_gyeongnam {
-    top: 420px;
-    left: 380px;
+    /* top: 420px;
+    left: 380px; */
+    top: 55.3%;
+    left: 56.3%;
   }
   .city_busan {
-    top: 450px;
-    left: 470px;
+    /* top: 450px;
+    left: 470px; */
+    top: 59.4%;
+    left: 69.5%;
   }
   .city_jeju {
-    top: 650px;
-    left: 210px;
+    /* top: 650px;
+    left: 210px; */
+    top: 85.65%;
+    left: 31.08%;
   }
   .screen_out {
     display: block;
