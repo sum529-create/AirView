@@ -27,10 +27,10 @@ const StandbyStateMap: React.FC<{ images: any; state: string }> = ({
       setTickMarks(["12", "03", "09"]); // 22~09시
     } else if (hour >= 9 && hour < 12) {
       setTickMarks(["9", "15", "21"]); // 09~12시
-    } else if (hour >= 12 && hour < 16) {
-      setTickMarks(["12", "18", "00"]); // 12~16시
+    } else if (hour >= 12 && hour < 18) {
+      setTickMarks(["12", "18", "00"]); // 12~18시
     } else {
-      setTickMarks(["06", "12", "18"]); // 16~22시
+      setTickMarks(["06", "12", "18"]); // 18~22시
     }
   }, [images]);
   const handleChange = (e: ChangeEvent<HTMLInputElement> | string) => {

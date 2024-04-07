@@ -1,7 +1,24 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import AirPopup from "./AirPopup";
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
 const WrapTab = styled.div`
   height: 90px;
   background: #fff;
@@ -102,12 +119,20 @@ const WrapTab = styled.div`
   @media (max-width: 768px) {
     height: 40px;
     .main_tab {
-      display: none;
       width: 25%;
       height: auto;
       position: absolute;
       z-index: 100;
       margin-top: 40px;
+      box-shadow: 1px 12px 10px 5px rgba(0, 0, 0, 0.11)
+    }
+    .main_tab_mo{
+      display:block;
+      animation: ${fadeIn} 0.5s linear forwards;
+    }
+    .main_tab_mo_hid{
+      display:none;
+      animation: ${fadeOut} 0.5s linear forwards;
     }
     .nav_item_mo {
       display: block;
@@ -161,8 +186,7 @@ const TabAir: React.FC<TabAirProps> = ({ onSelectTab }) => {
     <>
       <WrapTab>
         <div
-          className="main_tab"
-          style={isMainTabMo ? { display: "block" } : {}}
+          className={`main_tab ${isMainTabMo ? "main_tab_mo" : "main_tab_mo_hid"}`}
         >
           <ul>
             <li

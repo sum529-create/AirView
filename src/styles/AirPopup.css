@@ -428,6 +428,7 @@
     display: block;
     float: left;
     margin-right: 10px;
+    line-height: 0.75;
   }
   .popup-content .popup-header .right_triangle,
   .popup-content .popup-header .triangle,
@@ -464,6 +465,7 @@
     .air_grade_state_mo {
     font-size: 12px;
     width: 114px;
+    word-break: keep-all;
   }
   .popup-content .popup-body .pol_standards .air_grade_info .air_grade_txt {
     padding: 7px;

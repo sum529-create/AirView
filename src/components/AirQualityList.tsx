@@ -170,6 +170,10 @@ const AirQualityUl = styled.ul`
     top: 85.65%;
     left: 31.08%;
   }
+  .air_dataTime{
+    left: 1.5%;
+    top: 95%;
+  }
   .screen_out {
     display: block;
     overflow: hidden;

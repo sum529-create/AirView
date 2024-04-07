@@ -67,7 +67,7 @@ const TodayWeatherArea = styled.div`
   }
   @media (max-width: 768px) {
     position: initial;
-    height: 240px;
+    height: auto;
     .todayAirTime {
       position: initial;
       width: 100%;
@@ -79,6 +79,7 @@ const TodayWeatherArea = styled.div`
       position: initial;
       width: 100%;
       padding-right: 0;
+      height:auto;
       .todayAirInfoArea {
         display: flex;
         justify-content: center;
@@ -95,7 +96,7 @@ const TodayWeatherArea = styled.div`
   }
 `;
 const AirQualityImg = styled.div`
-  height: 1000px;
+  min-height: 1000px;
   background: #fff;
   padding: 10px;
   .sub-title {
