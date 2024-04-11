@@ -45,3 +45,24 @@ export async function getCtprvnMesureLIst(selectedTab: string) {
     throw new Error("Failed to fetch data");
   }
 }
+export async function getCtprvnMesureSidoLIst(sidoName: string) {
+  try {
+    const res = await axios.get(
+      "http://localhost:5002/api/getCtprvnMesureSidoLIst",
+      {
+        params: {
+          returnType: "json",
+          numOfRows: 100,
+          pageNo: 1,
+          sidoName: sidoName,
+          searchCondition: "DAILY",
+        },
+      }
+    );
+
+    return res.data.response.body.items;
+  } catch (error) {
+    console.error("fetching data error");
+    throw new Error("Failed to fetch data");
+  }
+}

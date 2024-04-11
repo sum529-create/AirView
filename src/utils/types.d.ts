@@ -47,3 +47,30 @@ export interface IArpltnStatsSvc {
   gyeonggi: string;
   itemCode: string;
 }
+
+export interface ICtprvnMesureSidoLIst {
+  [key: string]: any;
+  cityName: string;
+  cityNameEng: string;
+  coValue: string;
+  dataGubun: string;
+  dataTime: string;
+  districtCode: string;
+  districtNumSeq: string;
+  itemCode: string;
+  khaiValue: string;
+  no2Value: string;
+  numOfRows: string;
+  o3Value: string;
+  pageNo: string;
+  pm10Value: string;
+  pm25Value: string;
+  resultCode: string;
+  resultMsg: string;
+  returnType: string;
+  searchCondition: string;
+  serviceKey: string;
+  sidoName: string;
+  so2Value: string;
+  totalCount: string;
+}

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import { getCtprvnMesureLIst } from "../services/api";
 import { IArpltnStatsSvc } from "../utils/types";
+import AirStatePopup from "./AirStatePopup";
 
 const AirQualityUl = styled.ul`
   position: absolute;
@@ -67,6 +68,7 @@ const AirQualityUl = styled.ul`
     position: absolute;
     z-index: 99;
     text-align: center;
+    cursor: pointer;
   }
   .city_seoul {
     /* left: 258px;
@@ -170,7 +172,7 @@ const AirQualityUl = styled.ul`
     top: 85.65%;
     left: 31.08%;
   }
-  .air_dataTime{
+  .air_dataTime {
     left: 1.5%;
     top: 95%;
   }
@@ -485,6 +487,19 @@ const AirQualityList: React.FC<AirQualityListProps> = ({ selectedTab }) => {
     ["airLocalData", selectedTab],
     () => getCtprvnMesureLIst(selectedTab)
   );
+  const [isPopOpen, setIsPopOpen] = useState(false);
+  const [locationNm, setLocationNm] = useState("");
+  const [locationEnNm, setLocationEnNm] = useState<string>("");
+  const openPopup = (name: string | null) => {
+    if (name) {
+      setLocationNm(translateKey(name) || "");
+      setLocationEnNm(name);
+    }
+    setIsPopOpen(true);
+  };
+  const closePopup = () => {
+    setIsPopOpen(false);
+  };
 
   if (isLoading)
     return (
@@ -497,108 +512,129 @@ const AirQualityList: React.FC<AirQualityListProps> = ({ selectedTab }) => {
     );
 
   return (
-    <AirQualityUl>
-      {airTotalInfo &&
-        Object.entries(airTotalInfo).map(([key, value], i) => {
-          if (key !== "dataGubun" && key !== "dataTime" && key !== "itemCode") {
-            return (
-              <li key={i} className={"city_" + key}>
-                <em className="city_nm">{translateKey(key)}</em>
-                {selectedTab === "PM10" ? (
-                  <a
-                    className={
-                      value < 31
-                        ? "air_good"
-                        : value < 81
-                        ? "air_normal"
-                        : value < 151
-                        ? "air_bad"
-                        : "air_veryBad"
-                    }
-                  >
-                    <span className="air_condition">
-                      <span className="screen_out">{key}</span>
-                      <span className="air_state">{value}</span>
-                    </span>
-                  </a>
-                ) : selectedTab === "PM25" ? (
-                  <a
-                    className={
-                      value < 16
-                        ? "air_good"
-                        : value < 36
-                        ? "air_normal"
-                        : value < 76
-                        ? "air_bad"
-                        : "air_veryBad"
-                    }
-                  >
-                    <span className="air_condition">
-                      <span className="screen_out">{key}</span>
-                      <span className="air_state">{value}</span>
-                    </span>
-                  </a>
-                ) : selectedTab === "SO2" ? (
-                  <a
-                    className={
-                      value < 0.021
-                        ? "air_good"
-                        : value < 0.051
-                        ? "air_normal"
-                        : value < 0.151
-                        ? "air_bad"
-                        : "air_veryBad"
-                    }
-                  >
-                    <span className="air_condition">
-                      <span className="screen_out">{key}</span>
-                      <span className="air_state">{value}</span>
-                    </span>
-                  </a>
-                ) : selectedTab === "CO" ? (
-                  <a
-                    className={
-                      value < 3
-                        ? "air_good"
-                        : value < 10
-                        ? "air_normal"
-                        : value < 16
-                        ? "air_bad"
-                        : "air_veryBad"
-                    }
-                  >
-                    <span className="air_condition">
-                      <span className="screen_out">{key}</span>
-                      <span className="air_state">{value}</span>
-                    </span>
-                  </a>
-                ) : selectedTab === "O3" || selectedTab === "NO2" ? (
-                  <a
-                    className={
-                      value < 0.031
-                        ? "air_good"
-                        : value < 0.091
-                        ? "air_normal"
-                        : value < 0.151
-                        ? "air_bad"
-                        : "air_veryBad"
-                    }
-                  >
-                    <span className="air_condition">
-                      <span className="screen_out">{key}</span>
-                      <span className="air_state">{value}</span>
-                    </span>
-                  </a>
-                ) : null}
-              </li>
-            );
-          } else if (key === "dataTime") {
-            return <li className="air_dataTime">{value}</li>;
-          } else {
-            return null;
-          }
-        })}
-    </AirQualityUl>
+    <>
+      <AirQualityUl>
+        {airTotalInfo &&
+          Object.entries(airTotalInfo).map(([key, value], i) => {
+            if (
+              key !== "dataGubun" &&
+              key !== "dataTime" &&
+              key !== "itemCode"
+            ) {
+              return (
+                <li
+                  onClick={() => openPopup(key)}
+                  key={`${key}-${i}`}
+                  className={"city_" + key}
+                >
+                  <em className="city_nm">{translateKey(key)}</em>
+                  {selectedTab === "PM10" ? (
+                    <a
+                      className={
+                        value < 31
+                          ? "air_good"
+                          : value < 81
+                          ? "air_normal"
+                          : value < 151
+                          ? "air_bad"
+                          : "air_veryBad"
+                      }
+                    >
+                      <span className="air_condition">
+                        <span className="screen_out">{key}</span>
+                        <span className="air_state">{value}</span>
+                      </span>
+                    </a>
+                  ) : selectedTab === "PM25" ? (
+                    <a
+                      className={
+                        value < 16
+                          ? "air_good"
+                          : value < 36
+                          ? "air_normal"
+                          : value < 76
+                          ? "air_bad"
+                          : "air_veryBad"
+                      }
+                    >
+                      <span className="air_condition">
+                        <span className="screen_out">{key}</span>
+                        <span className="air_state">{value}</span>
+                      </span>
+                    </a>
+                  ) : selectedTab === "SO2" ? (
+                    <a
+                      className={
+                        value < 0.021
+                          ? "air_good"
+                          : value < 0.051
+                          ? "air_normal"
+                          : value < 0.151
+                          ? "air_bad"
+                          : "air_veryBad"
+                      }
+                    >
+                      <span className="air_condition">
+                        <span className="screen_out">{key}</span>
+                        <span className="air_state">{value}</span>
+                      </span>
+                    </a>
+                  ) : selectedTab === "CO" ? (
+                    <a
+                      className={
+                        value < 3
+                          ? "air_good"
+                          : value < 10
+                          ? "air_normal"
+                          : value < 16
+                          ? "air_bad"
+                          : "air_veryBad"
+                      }
+                    >
+                      <span className="air_condition">
+                        <span className="screen_out">{key}</span>
+                        <span className="air_state">{value}</span>
+                      </span>
+                    </a>
+                  ) : selectedTab === "O3" || selectedTab === "NO2" ? (
+                    <a
+                      className={
+                        value < 0.031
+                          ? "air_good"
+                          : value < 0.091
+                          ? "air_normal"
+                          : value < 0.151
+                          ? "air_bad"
+                          : "air_veryBad"
+                      }
+                    >
+                      <span className="air_condition">
+                        <span className="screen_out">{key}</span>
+                        <span className="air_state">{value}</span>
+                      </span>
+                    </a>
+                  ) : null}
+                </li>
+              );
+            } else if (key === "dataTime") {
+              return (
+                <li key={key} className="air_dataTime">
+                  {value}
+                </li>
+              );
+            } else {
+              return null;
+            }
+          })}
+      </AirQualityUl>
+      <AirStatePopup
+        isPopOpen={isPopOpen}
+        onClose={closePopup}
+        locationNm={locationNm}
+        locationEnNm={locationEnNm}
+        selectedTab={selectedTab}
+      />
+    </>
   );
 };
 

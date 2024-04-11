@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
-import "../styles/AirPopup.css"; // CSS 파일 임포트
+import "../styles/AirPopup.css";
 interface PopupProps {
   isPopOpen: boolean;
   onClose: () => void;

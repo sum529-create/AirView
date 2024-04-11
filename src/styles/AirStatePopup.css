@@ -1,0 +1,15 @@
+.popup-content .popup-body .popup-image-sec {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.popup-content .popup-body .popup-image-sec .local_map {
+  height: inherit;
+  margin: 0 auto;
+  display: block;
+  width: inherit;
+  opacity: 0.65;
+}
+
+@media (max-width: 1024px) {
+}

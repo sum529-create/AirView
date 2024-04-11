@@ -4,6 +4,7 @@ const axios = require("axios");
 const cors = require("cors");
 const app = express();
 const app2 = express();
+const app3 = express();
 
 const BASE_URL = "https://apis.data.go.kr/B552584";
 
@@ -18,6 +19,14 @@ app.use((req, res, next) => {
 });
 app2.use(cors());
 app2.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true"); // 인증 정보 포함 허용
+  next();
+});
+app3.use(cors());
+app3.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
@@ -57,6 +66,21 @@ app2.get("/api/getCtprvnMesureLIst", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+app3.get("/api/getCtprvnMesureSidoLIst", async (req, res) => {
+  const API_URL = `${BASE_URL}/ArpltnStatsSvc/getCtprvnMesureSidoLIst`;
+  const { returnType, numOfRows, pageNo, sidoName, searchCondition } =
+    req.query;
+  if (sidoName) {
+    const url = `${API_URL}?serviceKey=${process.env.REACT_APP_API_KEY}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&sidoName=${sidoName}&searchCondition=${searchCondition}`;
+    try {
+      const response = await axios.get(url);
+      res.json(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
+});
 
 // 서버 시작
 const PORT = process.env.PORT || 5000;
@@ -66,4 +90,8 @@ app.listen(PORT, () => {
 const PORT2 = process.env.PORT2 || 5001;
 app2.listen(PORT2, () => {
   console.log(`Server2 is running on port ${PORT2}`);
+});
+const PORT3 = process.env.PORT3 || 5002;
+app3.listen(PORT3, () => {
+  console.log(`Server3 is running on port ${PORT3}`);
 });
