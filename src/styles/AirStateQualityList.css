@@ -1,15 +1,969 @@
 ul.sido_area {
   position: absolute;
   top: 0;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+.sido_area li {
+  position: absolute;
+}
+.sido_area li em {
+  font-size: 0.875rem;
+  background: #fff;
 }
 .sido_area li span {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 4.6vw;
-  height: calc(4.6vw);
-  max-width: 40px;
-  max-height: 40px;
+  max-width: 20px;
+  max-height: 20px;
   text-align: center;
   border-radius: 50px;
+  margin: 0 auto;
+}
+.sido_area .air_good {
+  background-color: #00a8ff;
+}
+.sido_area .air_normal {
+  background-color: #4cd137;
+}
+.sido_area .air_bad {
+  background-color: #fbc531;
+}
+.sido_area .air_veryBad {
+  background-color: #e84118;
+}
+/* Seoul */
+.seoul .Gangnam-gu {
+  top: 68%;
+  left: 63%;
+}
+.seoul .Gangdong-gu {
+  top: 50%;
+  right: 11%;
+}
+.seoul .Gangbuk-gu {
+  top: 24%;
+  right: 39%;
+}
+.seoul .Gangseo-gu {
+  top: 46%;
+  left: 12%;
+}
+.seoul .Gwanak-gu {
+  bottom: 14%;
+  left: 40%;
+}
+.seoul .Gwangjin-gu {
+  right: 23%;
+  top: 51%;
+}
+.seoul .Guro-gu {
+  left: 20%;
+  bottom: 23%;
+}
+.seoul .Geumcheon-gu {
+  bottom: 14%;
+  left: 29%;
+}
+.seoul .Nowon-gu {
+  top: 20%;
+  right: 26.5%;
+}
+.seoul .Dobong-gu {
+  top: 11%;
+  right: 35.5%;
+}
+.seoul .Dongdaemun-gu {
+  right: 30%;
+  top: 41%;
+}
+.seoul .Dongjak-gu {
+  bottom: 27.4%;
+  left: 42%;
+}
+.seoul .Mapo-gu {
+  top: 49%;
+  left: 30%;
+}
+.seoul .Seodaemun-gu {
+  top: 44%;
+  left: 36.7%;
+}
+.seoul .Seocho-gu {
+  bottom: 21%;
+  right: 41%;
+}
+.seoul .Seongdong-gu {
+  right: 33.4%;
+  bottom: 41%;
+}
+.seoul .Seongbuk-gu {
+  top: 35.6%;
+  right: 39%;
+}
+.seoul .Songpa-gu {
+  right: 18%;
+  bottom: 28%;
+}
+.seoul .Yangcheon-gu {
+  left: 23%;
+  bottom: 31.3%;
+}
+.seoul .Yeongdeungpo-gu {
+  top: 63%;
+  left: 31%;
+}
+.seoul .Yongsan-gu {
+  top: 57%;
+  left: 48%;
+}
+.seoul .Eunpyeong-gu {
+  top: 28%;
+  left: 37%;
+}
+.seoul .Jongno-gu {
+  top: 41%;
+  left: 46.5%;
+}
+.seoul .Jung-gu {
+  left: 53%;
+  top: 48.6%;
+}
+.seoul .Jungnang-gu {
+  right: 22%;
+  top: 35%;
+}
+/* Incheon */
+.incheon .Ganghwa-gun {
+  left: 48%;
+  top: 24%;
+}
+.incheon .Gyeyang-gu {
+  right: 12%;
+  bottom: 41%;
+}
+.incheon .Nam-gu {
+  bottom: 19%;
+  right: 26%;
+}
+.incheon .Namdong-gu {
+  right: 9%;
+  bottom: 19%;
+}
+.incheon .Dong-gu {
+  right: 25%;
+  bottom: 27%;
+}
+.incheon .Bupyeong-gu {
+  right: 13%;
+  bottom: 30%;
+}
+.incheon .Seo-gu {
+  right: 24%;
+  bottom: 43%;
+}
+.incheon .Yeonsu-gu {
+  bottom: 12%;
+  right: 19%;
+}
+.incheon .Ongjin-gun {
+  bottom: 42%;
+  left: 40%;
+}
+.incheon .Jung-gu {
+  right: 20%;
+  bottom: 30%;
+}
+/* Gyeonggi */
+.gyeonggi .Gapyeong-gun {
+  top: 31%;
+  right: 31%;
+}
+.gyeonggi .Goyang-si {
+  top: 43%;
+  left: 22%;
+}
+.gyeonggi .Gwacheon-si {
+  bottom: 39%;
+  left: 34%;
+}
+.gyeonggi .Gwangmyeong-si {
+  bottom: 41%;
+  left: 25%;
+}
+.gyeonggi .Gwangju-si {
+  bottom: 36%;
+  right: 40%;
+}
+.gyeonggi .Guri-si {
+  top: 46%;
+  left: 43%;
+}
+.gyeonggi .Gunpo-si {
+  bottom: 31%;
+  left: 27%;
+}
+.gyeonggi .Gimpo-si {
+  top: 40%;
+  left: 6%;
+}
+.gyeonggi .Namnyangju-si {
+  left: 50%;
+  top: 42%;
+}
+.gyeonggi .Dongducheon-si {
+  left: 38%;
+  top: 25%;
+}
+.gyeonggi .Bucheon-si {
+  top: 51%;
+  left: 18%;
+}
+.gyeonggi .Seongnam-si {
+  top: 59%;
+  left: 42%;
+}
+.gyeonggi .Suwon-si {
+  bottom: 26%;
+  left: 34%;
+}
+.gyeonggi .Siheung-si {
+  bottom: 37%;
+  left: 18%;
+}
+.gyeonggi .Ansan-si {
+  bottom: 30%;
+  left: 20%;
+}
+.gyeonggi .Ansung-si {
+  bottom: 10%;
+  right: 41%;
+}
+.gyeonggi .Anyang-si {
+  bottom: 36%;
+  left: 29%;
+}
+.gyeonggi .Yangju-si {
+  top: 31%;
+  left: 34%;
+}
+.gyeonggi .Yangpyeong-gun {
+  right: 17%;
+  bottom: 42%;
+}
+.gyeonggi .Yeoju-gun {
+  right: 15%;
+  bottom: 28%;
+}
+.gyeonggi .Yeoncheon-gun {
+  top: 12%;
+  left: 37%;
+}
+.gyeonggi .Osan-si {
+  bottom: 19%;
+  left: 37%;
+}
+.gyeonggi .Yongin-si {
+  bottom: 23%;
+  left: 49%;
+}
+.gyeonggi .Uiwang-si {
+  bottom: 33%;
+  left: 35%;
+}
+.gyeonggi .Uijeongbu-si {
+  top: 39%;
+  left: 35%;
+}
+.gyeonggi .Icheon-si {
+  bottom: 24%;
+  right: 29%;
+}
+.gyeonggi .Paju-si {
+  top: 32%;
+  left: 21%;
+}
+.gyeonggi .Pyeongtaek-si {
+  bottom: 8%;
+  left: 32%;
+}
+.gyeonggi .Pocheon-si {
+  top: 22%;
+  right: 44%;
+}
+.gyeonggi .Hanam-si {
+  top: 52%;
+  right: 45%;
+}
+.gyeonggi .Hwaseong-si {
+  bottom: 20%;
+  left: 24%;
+}
+/* Gangwon */
+.gangwon .Gangneung-si {
+  right: 24%;
+  bottom: 40%;
+}
+.gangwon .Goseong-gun {
+  top: 13%;
+  right: 43%;
+}
+.gangwon .Donghae-si {
+  right: 14%;
+  bottom: 27%;
+}
+.gangwon .Samcheok-si {
+  right: 10%;
+  bottom: 13%;
+}
+.gangwon .Sokcho-si {
+  right: 37%;
+  top: 24%;
+}
+.gangwon .Yanggu-gun {
+  top: 24%;
+  left: 35%;
+}
+.gangwon .Yangyang-gun {
+  right: 34%;
+  top: 35%;
+}
+.gangwon .Yeongwol-gun {
+  right: 39%;
+  bottom: 9%;
+}
+.gangwon .Wonju-si {
+  left: 33%;
+  bottom: 15%;
+}
+.gangwon .Inje-gun {
+  top: 31%;
+  right: 48%;
+}
+.gangwon .Jeongseon-gun {
+  bottom: 20%;
+  right: 28%;
+}
+.gangwon .Cheorwon-gun {
+  left: 11%;
+  top: 23%;
+}
+.gangwon .Chuncheon-si {
+  top: 43%;
+  left: 25%;
+}
+.gangwon .Taebaek-si {
+  right: 18%;
+  bottom: 5%;
+}
+.gangwon .Pyeongchang-gun {
+  right: 39%;
+  bottom: 30%;
+}
+.gangwon .Hongcheon-gun {
+  top: 51%;
+  left: 38%;
+}
+.gangwon .Hwacheon-gun {
+  top: 26%;
+  left: 23%;
+}
+.gangwon .Hoengseong-gun {
+  bottom: 27%;
+  left: 40%;
+}
+/* Chungnam */
+.chungnam .Gongju-si {
+  top: 51%;
+  right: 34%;
+}
+.chungnam .Geumsan-gun {
+  right: 11%;
+  bottom: 11%;
+}
+.chungnam .Nonsan-si {
+  bottom: 16%;
+  right: 31%;
+}
+.chungnam .Dangjin-gun {
+  top: 13%;
+  left: 33%;
+}
+.chungnam .Boryeong-si {
+  left: 31%;
+  bottom: 31%;
+}
+.chungnam .Buyeo-gun {
+  bottom: 22%;
+  left: 46%;
+}
+.chungnam .Seosan-si {
+  top: 26%;
+  left: 22%;
+}
+.chungnam .Seocheon-gun {
+  bottom: 9%;
+  left: 37%;
+}
+.chungnam .Asan-si {
+  top: 22%;
+  right: 42%;
+}
+.chungnam .Yesan-gun {
+  top: 35%;
+  left: 44%;
+}
+.chungnam .Cheonan-si {
+  right: 27%;
+  top: 21%;
+}
+.chungnam .Cheongyang-gun {
+  bottom: 38%;
+  left: 44%;
+}
+.chungnam .Taean-gun {
+  top: 26%;
+  left: 9%;
+}
+.chungnam .Hongseong-gun {
+  top: 44%;
+  left: 30%;
+}
+.chungnam .Gyeryong-si {
+  right: 26%;
+  bottom: 26%;
+}
+/* Sejong */
+.sejong .Sejong-si {
+  top: 47%;
+  left: 43%;
+}
+/* Chungbuk */
+.chungbuk .Goesan-gun {
+  top: 36%;
+  left: 37%;
+}
+.chungbuk .Dannyang-gun {
+  right: 19%;
+  top: 19%;
+}
+.chungbuk .Boeun-gun {
+  left: 33%;
+  bottom: 37%;
+}
+.chungbuk .Yeongdong-gun {
+  bottom: 11%;
+  left: 37%;
+}
+.chungbuk .Okcheon-gun {
+  bottom: 24%;
+  left: 27%;
+}
+.chungbuk .Eumseong-gun {
+  top: 21%;
+  left: 22%;
+}
+.chungbuk .Jecheon-si {
+  right: 34%;
+  top: 10%;
+}
+.chungbuk .Jincheon-gun {
+  top: 30%;
+  left: 13%;
+}
+.chungbuk .Cheongju-si {
+  top: 46%;
+  left: 15%;
+}
+.chungbuk .Chungju-si {
+  top: 17%;
+  left: 42%;
+}
+.chungbuk .Jeungpyeong-gun {
+  top: 35%;
+  left: 23%;
+}
+/* Daejeon */
+.daejeon .Daedeok-gu {
+  top: 26%;
+  right: 38%;
+}
+.daejeon .Dong-gu {
+  right: 31%;
+  top: 50%;
+}
+.daejeon .Seo-gu {
+  bottom: 20%;
+  left: 27%;
+}
+.daejeon .Yuseong-gu {
+  top: 32%;
+  left: 30%;
+}
+.daejeon .Jung-gu {
+  bottom: 34%;
+  left: 49%;
+}
+/* Gyeongbuk */
+.gyeongbuk .Gyeongsan-si {
+  bottom: 14%;
+  left: 43%;
+}
+.gyeongbuk .Gyeongju-si {
+  right: 33%;
+  bottom: 15%;
+}
+.gyeongbuk .Goryeong-gun {
+  left: 21%;
+  bottom: 8%;
+}
+.gyeongbuk .Gumi-si {
+  bottom: 35%;
+  left: 23%;
+}
+.gyeongbuk .Gimcheon-si {
+  bottom: 30%;
+  left: 13%;
+}
+.gyeongbuk .Mungyeong-si {
+  top: 29%;
+  left: 16%;
+}
+.gyeongbuk .Bonghwa-gun {
+  top: 16%;
+  right: 48%;
+}
+.gyeongbuk .Sangju-si {
+  top: 45%;
+  left: 12%;
+}
+.gyeongbuk .Seongju-gun {
+  bottom: 19%;
+  left: 18%;
+}
+.gyeongbuk .Andong-si {
+  left: 40%;
+  top: 35%;
+}
+.gyeongbuk .Yeongdeok-gun {
+  right: 29%;
+  top: 41%;
+}
+.gyeongbuk .Yeongyang-gun {
+  right: 38%;
+  top: 29%;
+}
+.gyeongbuk .Yeongju-si {
+  top: 18%;
+  left: 32%;
+}
+.gyeongbuk .Yeongcheon-si {
+  bottom: 26%;
+  right: 45%;
+}
+.gyeongbuk .Yecheon-gun {
+  top: 32%;
+  left: 26%;
+}
+.gyeongbuk .Ulleung-gun {
+  right: 10%;
+  top: 8%;
+}
+.gyeongbuk .Uljin-gun {
+  right: 32%;
+  top: 13%;
+}
+.gyeongbuk .Uiseong-gun {
+  top: 50%;
+  left: 38%;
+}
+.gyeongbuk .Cheongdo-gun {
+  bottom: 4%;
+  left: 39%;
+}
+.gyeongbuk .Cheongsong-gun {
+  right: 40%;
+  top: 48%;
+}
+.gyeongbuk .Chilgok-gun {
+  bottom: 24%;
+  left: 29%;
+}
+.gyeongbuk .Pohang-si {
+  right: 32%;
+  bottom: 34%;
+}
+/* Daegu */
+.daegu .Nam-gu {
+  top: 43%;
+  left: 52%;
+}
+.daegu .Dalseo-gu {
+  top: 44%;
+  left: 39%;
+}
+.daegu .Dalseong-gun {
+  bottom: 33%;
+  left: 30%;
+}
+.daegu .Dong-gu {
+  right: 25%;
+  top: 19%;
+}
+.daegu .Buk-gu {
+  top: 22%;
+  right: 46%;
+}
+.daegu .Seo-gu {
+  top: 34%;
+  left: 44%;
+}
+.daegu .Suseong-gu {
+  right: 27%;
+  top: 42%;
+}
+.daegu .Jung-gu {
+  top: 35%;
+  left: 54%;
+}
+.daegu .Gunwi-gun {
+  top: 32%;
+  left: 22%;
+}
+/* Ulsan */
+.ulsan .Nam-gu {
+  top: 48%;
+  right: 27%;
+}
+.ulsan .Dong-gu {
+  right: 11%;
+  top: 47%;
+}
+.ulsan .Buk-gu {
+  right: 20%;
+  top: 27%;
+}
+.ulsan .Ulju-gun {
+  top: 40%;
+  left: 33%;
+}
+.ulsan .Jung-gu {
+  top: 35%;
+  right: 33%;
+}
+/* Jeonbuk */
+.jeonbuk .Gochang-gun {
+  bottom: 15%;
+  left: 10%;
+}
+.jeonbuk .Gunsan-si {
+  top: 22%;
+  left: 20%;
+}
+.jeonbuk .Gimje-si {
+  top: 37%;
+  left: 29%;
+}
+.jeonbuk .Namwon-si {
+  bottom: 13%;
+  right: 30%;
+}
+.jeonbuk .Muju-gun {
+  right: 13%;
+  top: 24%;
+}
+.jeonbuk .Buan-gun {
+  bottom: 40%;
+  left: 15%;
+}
+.jeonbuk .Sunchang-gun {
+  bottom: 10%;
+  left: 45%;
+}
+.jeonbuk .Wanju-gun {
+  top: 20%;
+  left: 51%;
+}
+.jeonbuk .Iksan-si {
+  top: 15%;
+  left: 35%;
+}
+.jeonbuk .Imsil-gun {
+  bottom: 30%;
+  right: 43%;
+}
+.jeonbuk .Jangsu-gun {
+  right: 23%;
+  bottom: 36%;
+}
+.jeonbuk .Jeonju-si {
+  top: 36%;
+  left: 43%;
+}
+.jeonbuk .Jeongeup-si {
+  bottom: 32%;
+  left: 30%;
+}
+.jeonbuk .Jinan-gun {
+  top: 36%;
+  right: 30%;
+}
+/* Gyeongnam */
+.gyeongnam .Geoje-si {
+  bottom: 12%;
+  right: 33%;
+}
+.gyeongnam .Geochang-gun {
+  top: 11%;
+  left: 18%;
+}
+.gyeongnam .Goseong-gun {
+  bottom: 25%;
+  left: 41%;
+}
+.gyeongnam .Gimhae-si {
+  right: 22%;
+  top: 48%;
+}
+.gyeongnam .Namhae-gun {
+  bottom: 6%;
+  left: 20%;
+}
+.gyeongnam .Miryang-si {
+  top: 32%;
+  right: 26%;
+}
+.gyeongnam .Sacheon-si {
+  bottom: 27%;
+  left: 23%;
+}
+.gyeongnam .Sancheong-gun {
+  top: 41%;
+  left: 18%;
+}
+.gyeongnam .Yangsan-si {
+  right: 10%;
+  top: 38%;
+}
+.gyeongnam .Uiryeong-gun {
+  top: 40%;
+  left: 40%;
+}
+.gyeongnam .Jinju-si {
+  bottom: 39%;
+  left: 32%;
+}
+.gyeongnam .Changnyeong-gun {
+  top: 29%;
+  left: 52%;
+}
+.gyeongnam .Changwon-si {
+  top: 47%;
+  right: 33%;
+}
+.gyeongnam .Tongyeong-si {
+  bottom: 12%;
+  left: 47%;
+}
+.gyeongnam .Hadong-gun {
+  top: 60%;
+  left: 12%;
+}
+.gyeongnam .Haman-gun {
+  top: 47%;
+  left: 49%;
+}
+.gyeongnam .Hamnyang-gun {
+  top: 27%;
+  left: 8%;
+}
+.gyeongnam .Hapcheon-gun {
+  top: 26%;
+  left: 32%;
+}
+/* Busan */
+.busan .Gangseo-gu {
+  top: 60%;
+  left: 20%;
+}
+.busan .Geumjeong-gu {
+  top: 31%;
+  right: 41%;
+}
+.busan .Gijang-gun {
+  top: 23%;
+  right: 21%;
+}
+.busan .Nam-gu {
+  bottom: 31%;
+  right: 40%;
+}
+.busan .Dong-gu {
+  bottom: 35%;
+  left: 47%;
+}
+.busan .Dongnae-gu {
+  top: 39%;
+  right: 44%;
+}
+.busan .Busanjin-gu {
+  bottom: 43%;
+  right: 49%;
+}
+.busan .Buk-gu {
+  top: 37%;
+  right: 53%;
+}
+.busan .Sasang-gu {
+  bottom: 40%;
+  left: 35%;
+}
+.busan .Saha-gu {
+  bottom: 24%;
+  left: 34%;
+}
+.busan .Seo-gu {
+  bottom: 20%;
+  left: 43%;
+}
+.busan .Suyeong-gu {
+  right: 36%;
+  bottom: 40%;
+}
+.busan .Yeonje-gu {
+  bottom: 45%;
+  right: 41%;
+}
+.busan .Yeongdo-gu {
+  bottom: 20%;
+  left: 53%;
+}
+.busan .Jung-gu {
+  bottom: 28%;
+  left: 45%;
+}
+.busan .Haeun.Daegu {
+  bottom: 44%;
+  right: 27%;
+}
+/* Gwangju */
+.gwangju .Gwangsan-gu {
+  top: 39%;
+  left: 25%;
+}
+.gwangju .Nam-gu {
+  bottom: 21%;
+  right: 40%;
+}
+.gwangju .Dong-gu {
+  right: 20%;
+  bottom: 29%;
+}
+.gwangju .Buk-gu {
+  right: 30%;
+  top: 24%;
+}
+.gwangju .Seo-gu {
+  bottom: 39%;
+  right: 45%;
+}
+/* Jeonnam */
+.jeonnam .Gangjin-gun {
+  bottom: 26%;
+  left: 45%;
+}
+.jeonnam .Goheung-gun {
+  right: 24%;
+  bottom: 23%;
+}
+.jeonnam .Gokseong-gun {
+  right: 26%;
+  top: 22%;
+}
+.jeonnam .Gwangyang-si {
+  right: 8%;
+  top: 37%;
+}
+.jeonnam .Gurye-gun {
+  right: 16%;
+  top: 20%;
+}
+.jeonnam .Naju-si {
+  top: 39%;
+  right: 53%;
+}
+.jeonnam .Damnyang-gun {
+  top: 17%;
+  left: 54%;
+}
+.jeonnam .Mokpo-si {
+  bottom: 42%;
+  left: 25%;
+}
+.jeonnam .Muan-gun {
+  top: 38%;
+  left: 27%;
+}
+.jeonnam .Boseong-gun {
+  bottom: 40%;
+  right: 31%;
+}
+.jeonnam .Suncheon-si {
+  right: 20%;
+  top: 40%;
+}
+.jeonnam .Sinan-gun {
+  top: 46%;
+  left: 10%;
+}
+.jeonnam .Yeosu-si {
+  right: 8%;
+  bottom: 36%;
+}
+.jeonnam .Yeonggwang-gun {
+  top: 19%;
+  left: 29%;
+}
+.jeonnam .Yeongam-gun {
+  bottom: 39%;
+  left: 38%;
+}
+.jeonnam .Wando-gun {
+  bottom: 4%;
+  left: 42%;
+}
+.jeonnam .Jangseong-gun {
+  top: 15%;
+  left: 45%;
+}
+.jeonnam .Jangheung-gun {
+  bottom: 32%;
+  left: 51%;
+}
+.jeonnam .Jindo-gun {
+  bottom: 12%;
+  left: 19%;
+}
+.jeonnam .Hampyeong-gun {
+  top: 31%;
+  left: 33%;
+}
+.jeonnam .Haenam-gun {
+  bottom: 18%;
+  left: 35%;
+}
+.jeonnam .Hwasun-gun {
+  top: 38%;
+  right: 38%;
+}
+/* Jeju */
+.jeju .Seogwipo-si {
+  bottom: 31%;
+  left: 49%;
+}
+.jeju .Jeju-si {
+  top: 30%;
+  left: 47%;
 }

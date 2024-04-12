@@ -90,7 +90,7 @@
 .popup-content .popup-header .main-title {
   background-color: #00ccc2;
   float: left;
-  width: calc(25vw - 15px);
+  width: calc(26vw - 15px);
   max-width: 260px;
   text-align: center;
   box-shadow: 0 11px 14px -9px rgba(0, 0, 0, 0.4);

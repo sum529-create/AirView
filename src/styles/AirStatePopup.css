@@ -1,15 +1,21 @@
+.popup-content.airState_quality {
+  height: auto;
+}
 .popup-content .popup-body .popup-image-sec {
   height: 100%;
-  width: 100%;
   overflow: hidden;
 }
 .popup-content .popup-body .popup-image-sec .local_map {
+  object-fit: contain;
   height: inherit;
+  width: 100%;
   margin: 0 auto;
   display: block;
-  width: inherit;
-  opacity: 0.65;
+  opacity: 0.3;
 }
 
 @media (max-width: 1024px) {
+  .popup-content {
+    max-width: calc(100% - 10vw);
+  }
 }

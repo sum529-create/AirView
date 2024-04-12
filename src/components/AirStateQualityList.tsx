@@ -1,14 +1,15 @@
 import React, { FC } from "react";
 import "../styles/AirStateQualityList.css";
+import { getAirQualityClassName } from "../utils/helpers";
 
 interface PopupProps {
   airSidoData: object;
-  locationNm: string;
+  locationEnNm: string;
   selectedTab: string;
 }
 const AirStateQualityList: FC<PopupProps> = ({
   airSidoData,
-  locationNm,
+  locationEnNm,
   selectedTab,
 }) => {
   let filteredData = [];
@@ -21,27 +22,36 @@ const AirStateQualityList: FC<PopupProps> = ({
       (item: any) => item.dataTime === firstDataTime
     );
   }
-  console.log(filteredData);
+
   return (
     <>
-      <ul className="sido_area">
+      <ul className={"sido_area " + locationEnNm}>
         {filteredData &&
           filteredData.map((item, i) => {
+            const airQualityValue = {
+              PM10: item.pm10Value,
+              PM25: item.pm25Value,
+              SO2: item.so2Value,
+              CO: item.coValue,
+              O3: item.o3Value,
+              NO2: item.no2Value,
+            }[selectedTab];
+
             return (
-              <li key={i} className={item.cityNameEng}>
+              <li
+                key={i}
+                className={
+                  item.cityNameEng === "" ? "Gyeryong-si" : item.cityNameEng
+                }
+              >
                 <em>{item.cityName}</em>
-                <span>
-                  {selectedTab === "PM10"
-                    ? item.pm10Value
-                    : selectedTab === "PM25"
-                    ? item.pm25Value
-                    : selectedTab === "SO2"
-                    ? item.so2Value
-                    : selectedTab === "CO"
-                    ? item.coValue
-                    : selectedTab === "O3"
-                    ? item.o3Value
-                    : item.no2Value}
+                <span
+                  className={getAirQualityClassName(
+                    airQualityValue,
+                    selectedTab
+                  )}
+                >
+                  {airQualityValue}
                 </span>
               </li>
             );

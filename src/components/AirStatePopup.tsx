@@ -1,10 +1,12 @@
 import React, { FC, useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import styled from "styled-components";
 import { getCtprvnMesureSidoLIst } from "../services/api";
 import "../styles/AirPopup.css";
 import "../styles/AirStatePopup.css";
 import { ICtprvnMesureSidoLIst } from "../utils/types";
 import AirStateQualityList from "./AirStateQualityList";
+import Loading from "./Loading";
 
 interface PopupProps {
   isPopOpen: boolean;
@@ -13,6 +15,15 @@ interface PopupProps {
   locationEnNm: string;
   selectedTab: string;
 }
+
+const LoadingSec = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  opacity: 0.5;
+  z-index: 999;
+`;
 
 const AirStatePopup: FC<PopupProps> = ({
   isPopOpen,
@@ -37,14 +48,19 @@ const AirStatePopup: FC<PopupProps> = ({
   }, [isPopOpen]);
 
   if (!isVisible) return null;
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <LoadingSec>
+        <Loading />
+      </LoadingSec>
+    );
 
   return (
     <div
       className={`popup-container ${isPopOpen ? "popup-show" : "popup-hide"}`}
     >
       <div className="popup-background" onClick={onClose}></div>
-      <div className="popup-content">
+      <div className="popup-content airState_quality">
         <div className="popup-close" onClick={onClose}>
           <span className="material-symbols-outlined">close</span>
         </div>
@@ -80,14 +96,14 @@ const AirStatePopup: FC<PopupProps> = ({
                 ".jpeg"
               }
             />
-            {airSidoData && (
-              <AirStateQualityList
-                airSidoData={airSidoData}
-                locationNm={locationNm}
-                selectedTab={selectedTab}
-              />
-            )}
           </div>
+          {airSidoData && (
+            <AirStateQualityList
+              airSidoData={airSidoData}
+              locationEnNm={locationEnNm}
+              selectedTab={selectedTab}
+            />
+          )}
         </div>
       </div>
     </div>
