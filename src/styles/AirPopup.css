@@ -405,7 +405,7 @@
     flex: 1;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .popup-content .popup-header {
     display: block;
     position: static;

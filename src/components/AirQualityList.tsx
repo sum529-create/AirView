@@ -35,6 +35,9 @@ const AirQualityUl = styled.ul`
         display: inline-block;
         padding: 10px 0;
         text-align: center;
+        @media (max-width: 768px) {
+          font-size: 14px;
+        }
       }
     }
   }

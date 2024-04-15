@@ -11,17 +11,49 @@ ul.sido_area {
 .sido_area li em {
   font-size: 0.875rem;
   background: #fff;
+  font-weight: 600;
+}
+.sido_area li em.cityName-mo {
+  display: none;
 }
 .sido_area li span {
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 20px;
-  max-height: 20px;
+  max-width: 37px;
+  min-width: 19px;
+  min-height: 19px;
+  font-weight: 500;
   text-align: center;
   border-radius: 50px;
   margin: 0 auto;
 }
+@media (max-width: 768px) {
+  .sido_area li.cityArea-mo {
+    background: #fff;
+    border: 1px solid #4b6584;
+    padding: 3px;
+    z-index: 999;
+    cursor: pointer;
+  }
+  .sido_area li em.cityName {
+    display: none;
+  }
+  .sido_area li em.cityName-mo {
+    position: relative;
+    z-index: 999;
+    display: block;
+  }
+  .sido_area li span {
+    padding: 1px 2.65px;
+  }
+  .sido_area li.cityArea-mo span {
+    position: relative;
+    z-index: 999;
+  }
+}
+
 .sido_area .air_good {
   background-color: #00a8ff;
 }
@@ -187,10 +219,10 @@ ul.sido_area {
 }
 .gyeonggi .Gwacheon-si {
   bottom: 39%;
-  left: 34%;
+  left: 35.6%;
 }
 .gyeonggi .Gwangmyeong-si {
-  bottom: 41%;
+  bottom: 43%;
   left: 25%;
 }
 .gyeonggi .Gwangju-si {
@@ -202,7 +234,7 @@ ul.sido_area {
   left: 43%;
 }
 .gyeonggi .Gunpo-si {
-  bottom: 31%;
+  bottom: 30%;
   left: 27%;
 }
 .gyeonggi .Gimpo-si {
@@ -223,7 +255,7 @@ ul.sido_area {
 }
 .gyeonggi .Seongnam-si {
   top: 59%;
-  left: 42%;
+  left: 44%;
 }
 .gyeonggi .Suwon-si {
   bottom: 26%;
@@ -235,15 +267,15 @@ ul.sido_area {
 }
 .gyeonggi .Ansan-si {
   bottom: 30%;
-  left: 20%;
+  left: 18%;
 }
 .gyeonggi .Ansung-si {
   bottom: 10%;
   right: 41%;
 }
 .gyeonggi .Anyang-si {
-  bottom: 36%;
-  left: 29%;
+  bottom: 37%;
+  left: 28%;
 }
 .gyeonggi .Yangju-si {
   top: 31%;

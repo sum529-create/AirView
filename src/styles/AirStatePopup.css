@@ -1,6 +1,9 @@
 .popup-content.airState_quality {
   height: auto;
 }
+.popup-content .popup-header .main-title .sub-title-mo {
+  display: none;
+}
 .popup-content .popup-body .popup-image-sec {
   height: 100%;
   overflow: hidden;
@@ -17,5 +20,16 @@
 @media (max-width: 1024px) {
   .popup-content {
     max-width: calc(100% - 10vw);
+  }
+}
+@media (max-width: 768px) {
+  .popup-content .popup-header .main-title h1 {
+    font-size: 1.125rem;
+  }
+  .popup-content .popup-header .main-title .sub-title-mo {
+    display: block;
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 10px;
   }
 }

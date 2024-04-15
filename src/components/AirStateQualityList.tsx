@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import "../styles/AirStateQualityList.css";
 import { getAirQualityClassName } from "../utils/helpers";
 
@@ -12,6 +12,7 @@ const AirStateQualityList: FC<PopupProps> = ({
   locationEnNm,
   selectedTab,
 }) => {
+  const [hoveredItemIndex, setHoveredItemIndex] = useState<number | null>(null);
   let filteredData = [];
   if (airSidoData && Object.keys(airSidoData).length > 0) {
     const keys = Object.keys(airSidoData);
@@ -40,18 +41,24 @@ const AirStateQualityList: FC<PopupProps> = ({
             return (
               <li
                 key={i}
-                className={
-                  item.cityNameEng === "" ? "Gyeryong-si" : item.cityNameEng
-                }
+                className={[
+                  item.cityNameEng === "" ? "Gyeryong-si" : item.cityNameEng,
+                  hoveredItemIndex === i ? "cityArea-mo" : "",
+                ].join(" ")}
+                onMouseEnter={() => setHoveredItemIndex(i)}
+                onMouseLeave={() => setHoveredItemIndex(null)}
               >
-                <em>{item.cityName}</em>
+                <em className="cityName">{item.cityName}</em>
+                {hoveredItemIndex === i && (
+                  <em className="cityName-mo">{item.cityName}</em>
+                )}
                 <span
                   className={getAirQualityClassName(
                     airQualityValue,
                     selectedTab
                   )}
                 >
-                  {airQualityValue}
+                  {airQualityValue === "" ? "-" : airQualityValue}
                 </span>
               </li>
             );

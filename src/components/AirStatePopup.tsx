@@ -66,8 +66,13 @@ const AirStatePopup: FC<PopupProps> = ({
         </div>
         <div className="popup-header">
           <div className="main-title">
-            {/* <h1 className="sub-title-mo">{itemCode} </h1> */}
             <h1>{locationNm} 대기정보</h1>
+            <h2 className="sub-title-mo">
+              {airSidoData && Object.keys(airSidoData).length > 0
+                ? airSidoData[Object.keys(airSidoData)[0]]?.dataTime
+                : null}{" "}
+              기준
+            </h2>
           </div>
           <img
             className="right_triangle"
