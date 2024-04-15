@@ -15,6 +15,9 @@ const AirQualityUl = styled.ul`
   .city_nm {
     font-weight: 500;
     color: #333;
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
   a {
     display: flex;
@@ -33,12 +36,15 @@ const AirQualityUl = styled.ul`
       color: #fff;
       .air_state {
         display: inline-block;
-        padding: 10px 0;
+        padding: 10px 3px;
         text-align: center;
         @media (max-width: 768px) {
-          font-size: 14px;
+          font-size: 12px;
         }
       }
+    }
+    @media (max-width: 600px) {
+      width: auto;
     }
   }
   .air_good {
@@ -85,13 +91,13 @@ const AirQualityUl = styled.ul`
     /* top: 140px;
     left: 210px; */
     top: 18.45%;
-    left: 31.11%;
+    left: 28.11%;
   }
   .city_gyeonggi {
     /* top: 120px;
     left: 320px; */
     top: 15.5%;
-    left: 47.5%;
+    left: 48.5%;
   }
   .city_gangwon {
     /* top: 90px;
@@ -108,7 +114,7 @@ const AirQualityUl = styled.ul`
   .city_sejong {
     /* top: 245px;
     left: 280px; */
-    top: 32.3%;
+    top: 31.3%;
     left: 41.4%;
   }
   .city_chungbuk {
@@ -127,7 +133,7 @@ const AirQualityUl = styled.ul`
     /* top: 310px;
     left: 300px; */
     top: 41%;
-    left: 44.8%;
+    left: 45.8%;
   }
   .city_jeonbuk {
     /* top: 360px;
@@ -144,7 +150,7 @@ const AirQualityUl = styled.ul`
   .city_ulsan {
     /* top: 390px;
     left: 500px; */
-    top: 51.4%;
+    top: 49.4%;
     left: 74%;
   }
   .city_gwangju {
@@ -156,8 +162,8 @@ const AirQualityUl = styled.ul`
   .city_jeonnam {
     /* top: 510px;
     left: 210px; */
-    top: 66.9%;
-    left: 31%;
+    top: 67.9%;
+    left: 29%;
   }
   .city_gyeongnam {
     /* top: 420px;
@@ -230,15 +236,20 @@ const translateKey = (key: string) => {
 
 interface AirQualityListProps {
   selectedTab: string;
+  selectedSubTab: number;
 }
 
-const AirQualityList: React.FC<AirQualityListProps> = ({ selectedTab }) => {
+const AirQualityList: React.FC<AirQualityListProps> = ({
+  selectedTab,
+  selectedSubTab,
+}) => {
   if (!selectedTab) {
     selectedTab = "PM10";
   }
+  if (!selectedSubTab) selectedSubTab = 0;
   const { isLoading, data: airTotalInfo } = useQuery<IArpltnStatsSvc>(
-    ["airLocalData", selectedTab],
-    () => getCtprvnMesureLIst(selectedTab)
+    ["airLocalData", selectedTab, selectedSubTab],
+    () => getCtprvnMesureLIst(selectedTab, selectedSubTab)
   );
   const [isPopOpen, setIsPopOpen] = useState(false);
   const [locationNm, setLocationNm] = useState("");

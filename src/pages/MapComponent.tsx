@@ -42,13 +42,23 @@ function MapCompnent() {
   const handleTabSelect = (tab: string) => {
     setSelectedTab(tab);
   };
+  const [selectedSubTab, setSelectedSubTab] = useState<number>(0);
+  const handleSubTabSelect = (tab: number) => {
+    setSelectedSubTab(tab);
+  };
   return (
     <Container>
       <Section>
         <Header />
-        <TabAir onSelectTab={handleTabSelect} />
+        <TabAir
+          onSelectTab={handleTabSelect}
+          onSelectSubTab={handleSubTabSelect}
+        />
         <MapWrap>
-          <AirQualityList selectedTab={selectedTab} />
+          <AirQualityList
+            selectedTab={selectedTab}
+            selectedSubTab={selectedSubTab}
+          />
           <MapArea>
             <NationalMap>
               <img

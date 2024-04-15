@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
+import { formateDate } from "../utils/helpers";
 import AirPopup from "./AirPopup";
 
 const fadeIn = keyframes`
@@ -64,14 +65,16 @@ const WrapTab = styled.div`
             font-size: 14px;
           }
         }
-        &::after {
-          content: "";
-          height: 26px;
-          width: 1px;
-          background: #21858c;
-          position: absolute;
-          top: 14px;
-          right: 0;
+        @media (min-width: 769px) {
+          &::after {
+            content: "";
+            height: 26px;
+            width: 1px;
+            background: #21858c;
+            position: absolute;
+            top: 14px;
+            right: 0;
+          }
         }
         &:last-child::after {
           display: none;
@@ -124,14 +127,14 @@ const WrapTab = styled.div`
       position: absolute;
       z-index: 100;
       margin-top: 40px;
-      box-shadow: 1px 12px 10px 5px rgba(0, 0, 0, 0.11)
+      box-shadow: 1px 12px 10px 5px rgba(0, 0, 0, 0.11);
     }
-    .main_tab_mo{
-      display:block;
+    .main_tab_mo {
+      display: block;
       animation: ${fadeIn} 0.5s linear forwards;
     }
-    .main_tab_mo_hid{
-      display:none;
+    .main_tab_mo_hid {
+      display: none;
       animation: ${fadeOut} 0.5s linear forwards;
     }
     .nav_item_mo {
@@ -160,16 +163,22 @@ const WrapTab = styled.div`
 `;
 interface TabAirProps {
   onSelectTab: (tab: string) => void;
+  onSelectSubTab: (tab: number) => void;
 }
-const TabAir: React.FC<TabAirProps> = ({ onSelectTab }) => {
+const TabAir: React.FC<TabAirProps> = ({ onSelectTab, onSelectSubTab }) => {
   const [isSelectedTab, setIsSelectedTab] = useState("PM10");
   const [isPopOpen, setIsPopOpen] = useState(false);
   const [isMainTabMo, setIsMainTabMo] = useState(false);
+  const [isSelectedSubTab, setIsSelectedSubTab] = useState(0);
   const openPopup = (tab: string) => {
     setIsPopOpen(true);
     setIsSelectedTab(tab);
   };
-
+  const formatDateWithOffset = (offset: number) => {
+    const date = new Date();
+    date.setDate(date.getDate() + offset);
+    return formateDate(date, 1);
+  };
   const closePopup = () => {
     setIsPopOpen(false);
   };
@@ -179,6 +188,10 @@ const TabAir: React.FC<TabAirProps> = ({ onSelectTab }) => {
     setIsSelectedTab(tab);
     setIsMainTabMo(false);
   };
+  const handleDaily = (day: number) => {
+    onSelectSubTab(day);
+    setIsSelectedSubTab(day);
+  };
   const openMobileTab = () => {
     setIsMainTabMo((e) => !e);
   };
@@ -186,7 +199,9 @@ const TabAir: React.FC<TabAirProps> = ({ onSelectTab }) => {
     <>
       <WrapTab>
         <div
-          className={`main_tab ${isMainTabMo ? "main_tab_mo" : "main_tab_mo_hid"}`}
+          className={`main_tab ${
+            isMainTabMo ? "main_tab_mo" : "main_tab_mo_hid"
+          }`}
         >
           <ul>
             <li
@@ -298,9 +313,30 @@ const TabAir: React.FC<TabAirProps> = ({ onSelectTab }) => {
         </div>
         <div className="sub_tab">
           <ul>
-            <li className="base_date">어제 03.28</li>
-            <li className="base_date check_day">오늘 03.29</li>
-            <li className="base_date">내일 03.30</li>
+            <li
+              onClick={() => handleDaily(-1)}
+              className={`base_date ${
+                isSelectedSubTab === -1 ? "check_day" : ""
+              }`}
+            >
+              어제 {formatDateWithOffset(-1)}
+            </li>
+            <li
+              onClick={() => handleDaily(0)}
+              className={`base_date ${
+                isSelectedSubTab === 0 ? "check_day" : ""
+              }`}
+            >
+              오늘 {formatDateWithOffset(0)}
+            </li>
+            <li
+              onClick={() => handleDaily(1)}
+              className={`base_date ${
+                isSelectedSubTab === 1 ? "check_day" : ""
+              }`}
+            >
+              내일 {formatDateWithOffset(1)}
+            </li>
           </ul>
         </div>
       </WrapTab>

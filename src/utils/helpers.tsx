@@ -1,11 +1,11 @@
-export const formateDate = (date: Date) => {
+export const formateDate = (date: Date, index: number) => {
   const myDate = new Date(date);
 
   const year = myDate.getFullYear();
   const month = String(myDate.getMonth() + 1).padStart(2, "0");
   const day = String(myDate.getDate()).padStart(2, "0");
-
-  return `${year}-${month}-${day}`;
+  if (index === 0) return `${year}-${month}-${day}`;
+  else return `${month}.${day}`;
 };
 export const getAirQualityClassName = (
   value: number,

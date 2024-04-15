@@ -21,8 +21,8 @@ const LoadingSec = styled.div`
   width: 100%;
   height: 100%;
   background: #fff;
-  opacity: 0.5;
-  z-index: 999;
+  opacity: 0.7;
+  z-index: 99;
 `;
 
 const AirStatePopup: FC<PopupProps> = ({
