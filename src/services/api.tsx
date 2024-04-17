@@ -29,6 +29,9 @@ export async function getCtprvnMesureLIst(
   selectedSubTab: number
 ) {
   try {
+    if (selectedSubTab === 1) {
+      return null;
+    }
     const res = await axios.get(
       "http://localhost:5001/api/getCtprvnMesureLIst",
       {
@@ -68,6 +71,25 @@ export async function getCtprvnMesureSidoLIst(sidoName: string) {
       }
     );
 
+    return res.data.response.body.items;
+  } catch (error) {
+    console.error("fetching data error");
+    throw new Error("Failed to fetch data");
+  }
+}
+export async function getNearbyMsrstnList(tmX: string, tmY: string) {
+  try {
+    const res = await axios.get(
+      "http://localhost:5003/api/getNearbyMsrstnList",
+      {
+        params: {
+          returnType: "json",
+          tmX: tmX,
+          tmY: tmY,
+          ver: "1.1",
+        },
+      }
+    );
     return res.data.response.body.items;
   } catch (error) {
     console.error("fetching data error");

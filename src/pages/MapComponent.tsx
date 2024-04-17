@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
 import Header from "../components/Header";
-import MapOpenAQ from "../components/MapOpenAQ";
+// import MapOpenAQ from "../components/MapOpenAQ";
 import AirQualityOverview from "../components/AirQualityOverview";
 import AirQualityList from "../components/AirQualityList";
 import TabAir from "../components/TabAir";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -39,13 +39,21 @@ const NationalMap = styled.div`
 
 function MapCompnent() {
   const [selectedTab, setSelectedTab] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedSubTab, setSelectedSubTab] = useState<number>(0);
+  const [tomAirData, setTomAirData] = useState<object>({});
   const handleTabSelect = (tab: string) => {
     setSelectedTab(tab);
   };
-  const [selectedSubTab, setSelectedSubTab] = useState<number>(0);
   const handleSubTabSelect = (tab: number) => {
     setSelectedSubTab(tab);
   };
+  const handleLoading = (loading: boolean) => {
+    setIsLoading(loading);
+  };
+  const getTomAirData = useCallback((data: object) => {
+    if (data) setTomAirData(data);
+  }, []);
   return (
     <Container>
       <Section>
@@ -56,20 +64,28 @@ function MapCompnent() {
         />
         <MapWrap>
           <AirQualityList
+            onLoadingChange={handleLoading}
             selectedTab={selectedTab}
             selectedSubTab={selectedSubTab}
+            tomAirData={tomAirData}
           />
-          <MapArea>
-            <NationalMap>
-              <img
-                src={process.env.PUBLIC_URL + "/bg_map_air.jpeg"}
-                alt="Background Map"
-              />
-            </NationalMap>
-            {/* <MapOpenAQ /> real map */}
-          </MapArea>
+          {!isLoading && (
+            <MapArea>
+              <NationalMap>
+                <img
+                  src={process.env.PUBLIC_URL + "/bg_map_air.jpeg"}
+                  alt="Background Map"
+                />
+              </NationalMap>
+              {/* <MapOpenAQ /> real map */}
+            </MapArea>
+          )}
         </MapWrap>
-        <AirQualityOverview />
+        <AirQualityOverview
+          selectedTab={selectedTab}
+          selectedSubTab={selectedSubTab}
+          getTomAirData={getTomAirData}
+        />
       </Section>
     </Container>
   );

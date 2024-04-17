@@ -41,6 +41,7 @@ const WrapTab = styled.div`
         font-weight: 600;
         position: relative;
         cursor: pointer;
+        word-break: keep-all;
         &.check_on {
           background: #21858c;
           &::after {
@@ -50,6 +51,9 @@ const WrapTab = styled.div`
         .air_txt {
           width: calc(100% - 14px);
           padding: 7px;
+          @media (max-width: 768px) {
+            width: 95px;
+          }
         }
         .air_info {
           font-size: 14px;
@@ -82,6 +86,9 @@ const WrapTab = styled.div`
         &:hover {
           background-color: #2bcbba;
         }
+        @media (max-width: 768px) {
+          width: 100%;
+        }
       }
     }
   }
@@ -96,7 +103,7 @@ const WrapTab = styled.div`
       text-align: center;
       li {
         width: 100px;
-        padding: 10px 4px;
+        padding: 10px 4px 0px;
         color: #686868;
         font-weight: 500;
         &.check_day {
@@ -107,7 +114,7 @@ const WrapTab = styled.div`
             content: "";
             height: 3px;
             background-color: #10ac84;
-            margin: 8px 0;
+            margin-top: 8px;
           }
         }
         &:hover {
@@ -121,15 +128,14 @@ const WrapTab = styled.div`
   }
   @media (max-width: 768px) {
     height: 40px;
-    .main_tab {
-      width: 25%;
+    .main_tab_mo {
       height: auto;
+      width: calc(100vw / 6);
+      min-width: 107px;
       position: absolute;
       z-index: 100;
       margin-top: 40px;
       box-shadow: 1px 12px 10px 5px rgba(0, 0, 0, 0.11);
-    }
-    .main_tab_mo {
       display: block;
       animation: ${fadeIn} 0.5s linear forwards;
     }
@@ -241,6 +247,23 @@ const TabAir: React.FC<TabAirProps> = ({ onSelectTab, onSelectSubTab }) => {
             <li
               className={
                 "nav_item" +
+                (isSelectedTab === "O3" && !isPopOpen ? " check_on" : "")
+              }
+            >
+              <div onClick={() => handleAirState("O3")} className="air_txt">
+                <span>O3</span>
+                <span className="air_codeNm">(오존)</span>
+              </div>
+              <span
+                onClick={() => openPopup("O3")}
+                className="material-symbols-outlined air_info"
+              >
+                info
+              </span>
+            </li>
+            <li
+              className={
+                "nav_item" +
                 (isSelectedTab === "SO2" && !isPopOpen ? " check_on" : "")
               }
             >
@@ -267,23 +290,6 @@ const TabAir: React.FC<TabAirProps> = ({ onSelectTab, onSelectSubTab }) => {
               </div>
               <span
                 onClick={() => openPopup("CO")}
-                className="material-symbols-outlined air_info"
-              >
-                info
-              </span>
-            </li>
-            <li
-              className={
-                "nav_item" +
-                (isSelectedTab === "O3" && !isPopOpen ? " check_on" : "")
-              }
-            >
-              <div onClick={() => handleAirState("O3")} className="air_txt">
-                <span>O3</span>
-                <span className="air_codeNm">(오존)</span>
-              </div>
-              <span
-                onClick={() => openPopup("O3")}
                 className="material-symbols-outlined air_info"
               >
                 info
@@ -329,14 +335,18 @@ const TabAir: React.FC<TabAirProps> = ({ onSelectTab, onSelectSubTab }) => {
             >
               오늘 {formatDateWithOffset(0)}
             </li>
-            <li
-              onClick={() => handleDaily(1)}
-              className={`base_date ${
-                isSelectedSubTab === 1 ? "check_day" : ""
-              }`}
-            >
-              내일 {formatDateWithOffset(1)}
-            </li>
+            {(isSelectedTab === "PM10" ||
+              isSelectedTab === "PM25" ||
+              isSelectedTab === "O3") && (
+              <li
+                onClick={() => handleDaily(1)}
+                className={`base_date ${
+                  isSelectedSubTab === 1 ? "check_day" : ""
+                }`}
+              >
+                내일 {formatDateWithOffset(1)}
+              </li>
+            )}
           </ul>
         </div>
       </WrapTab>

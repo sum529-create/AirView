@@ -55,3 +55,15 @@ export const getAirQualityClassName = (
     return "";
   }
 };
+export const getAirQualityKorConClsNm = (value: string) => {
+  switch (value) {
+    case "좋음":
+      return "air_good";
+    case "보통":
+      return "air_normal";
+    case "나쁨":
+      return "air_bad";
+    default:
+      return "veryBad";
+  }
+};

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { IAirData } from "../utils/types";
 import { useQuery } from "react-query";
 import { fetchTxtInfo } from "../services/api";
 import StandbyStateMap from "./StandbyStateMap";
+import MyLocationAirway from "./MyLocationAirway";
 
 const TodayWeatherArea = styled.div`
   position: relative;
@@ -104,7 +105,7 @@ const TodayWeatherArea = styled.div`
     }
   }
 `;
-const AirQualityImg = styled.div`
+const AirQualityArea = styled.div`
   min-height: 1000px;
   background: #fff;
   padding: 10px;
@@ -120,29 +121,76 @@ const AirQualityImg = styled.div`
     }
   }
 `;
+type AirQualityProps = {
+  selectedSubTab: number;
+  selectedTab: string;
+  getTomAirData: (data: object) => void;
+};
+function parseInformGrade(data: string): Record<string, string> {
+  const regions = data.split(","); // 콤마를 기준으로 지역별 데이터 분리
+  const result: Record<string, string> = {};
 
-function AirQualityOverview() {
+  regions.forEach((region) => {
+    const [key, value] = region.split(" : ").map((item) => item.trim()); // 콜론을 기준으로 키와 값 분리 후 양쪽 공백 제거
+    result[key] = value; // 객체에 키-값 쌍으로 저장
+  });
+
+  return result;
+}
+
+const TextRotator: React.FC<{ texts: any; interval: number }> = ({
+  texts,
+  interval,
+}) => {
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentIdx((pre) => (pre + 1) % texts.length);
+    }, interval);
+    return () => clearInterval(intervalId);
+  }, [texts, interval]);
+  return <div>{texts[currentIdx]}</div>;
+};
+
+function AirQualityOverview({
+  selectedSubTab,
+  selectedTab,
+  getTomAirData,
+}: AirQualityProps) {
   const { isLoading, data: airTotalInfo } = useQuery<IAirData[]>(
     "airDataTxtInfo",
     fetchTxtInfo
   );
+  const currentInformGrade = useMemo(() => {
+    if (isLoading || !airTotalInfo) {
+      return null; // 로딩 중이거나 데이터가 없는 경우 null 반환
+    }
+    if (selectedSubTab === 1) {
+      switch (selectedTab) {
+        case "PM10":
+          return airTotalInfo[1].informGrade;
+        case "PM25":
+          return airTotalInfo[3].informGrade;
+        default:
+          return airTotalInfo[5].informGrade;
+      }
+    }
+    return null;
+  }, [isLoading, selectedSubTab, selectedTab, airTotalInfo]);
 
-  if (isLoading) return <div>Loading...</div>;
+  // useEffect도 마찬가지로 모든 렌더링에서 호출
+  useEffect(() => {
+    if (currentInformGrade) {
+      getTomAirData(parseInformGrade(currentInformGrade));
+    } else {
+      getTomAirData({});
+    }
+  }, [currentInformGrade, getTomAirData]);
 
-  const TextRotator: React.FC<{ texts: any; interval: number }> = ({
-    texts,
-    interval,
-  }) => {
-    const [currentIdx, setCurrentIdx] = useState(0);
-
-    useEffect(() => {
-      const intervalId = setInterval(() => {
-        setCurrentIdx((pre) => (pre + 1) % texts.length);
-      }, interval);
-      return () => clearInterval(interval);
-    }, [texts, interval]);
-    return <div>{texts[currentIdx]}</div>;
-  };
+  if (isLoading) {
+    return <div>Loading...</div>; // isLoading 조건을 훅 아래로 이동
+  }
 
   const texts = airTotalInfo
     ? [airTotalInfo[0].informOverall, airTotalInfo[0].informCause]
@@ -161,7 +209,6 @@ function AirQualityOverview() {
         airTotalInfo[0].imageUrl6,
       ]
     : [];
-
   const interval = 8000;
 
   return (
@@ -181,13 +228,14 @@ function AirQualityOverview() {
           </>
         )}
       </TodayWeatherArea>
-      <AirQualityImg>
+      <AirQualityArea>
+        <MyLocationAirway />
         <p className="sub-title">대기 상태 지도</p>
         <div className="airQuality">
           <StandbyStateMap images={images1} state="pm10" />
           <StandbyStateMap images={images2} state="pm2.5" />
         </div>
-      </AirQualityImg>
+      </AirQualityArea>
     </>
   );
 }

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import { getCtprvnMesureLIst } from "../services/api";
 import { IArpltnStatsSvc } from "../utils/types";
 import AirStatePopup from "./AirStatePopup";
-import { getAirQualityClassName } from "../utils/helpers";
+import {
+  getAirQualityClassName,
+  getAirQualityKorConClsNm,
+} from "../utils/helpers";
 import Loading from "./Loading";
 
 const AirQualityUl = styled.ul`
@@ -24,7 +27,7 @@ const AirQualityUl = styled.ul`
     justify-content: center;
     align-items: center;
     width: 4.6vw;
-    height: calc(4.6vw);
+    height: 4.6vw;
     max-width: 40px;
     max-height: 40px;
     text-align: center;
@@ -45,6 +48,14 @@ const AirQualityUl = styled.ul`
     }
     @media (max-width: 600px) {
       width: auto;
+    }
+  }
+  @media (max-width: 768px) {
+    .air_condition_tom {
+      font-size: 0px;
+      a {
+        width: 4.6vw;
+      }
     }
   }
   .air_good {
@@ -75,7 +86,11 @@ const AirQualityUl = styled.ul`
   .city_jeonbuk,
   .city_gyeongnam,
   .city_busan,
-  .city_jeju {
+  .city_jeju,
+  .city_southGyeonggi,
+  .city_northGyeonggi,
+  .city_yeongdong,
+  .city_yeongseo {
     position: absolute;
     z-index: 99;
     text-align: center;
@@ -183,9 +198,21 @@ const AirQualityUl = styled.ul`
     top: 85.65%;
     left: 31.08%;
   }
-  .air_dataTime {
-    left: 1.5%;
-    top: 95%;
+  .city_yeongdong {
+    right: 25%;
+    top: 18%;
+  }
+  .city_yeongseo {
+    right: 36%;
+    top: 10%;
+  }
+  .city_southGyeonggi {
+    top: 19%;
+    left: 46%;
+  }
+  .city_northGyeonggi {
+    top: 6%;
+    left: 41%;
   }
   .screen_out {
     display: block;
@@ -200,17 +227,31 @@ const AirQualityUl = styled.ul`
   }
   .air_dataTime {
     position: absolute;
-    left: 10px;
-    top: 720px;
+    top: 3%;
+    right: 3%;
     display: block;
-    width: 120px;
+    background: #fff;
+    border: 1px solid #a5b1c2;
+    text-align: center;
+    border-radius: 13px;
+    padding: 3px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    span.material-symbols-outlined {
+      font-size: 16px;
+      position: relative;
+      top: 3px;
+      margin-right: 3px;
+      cursor: pointer;
+    }
   }
 `;
 type Translations = {
   [key: string]: string;
 };
 
-const translateKey = (key: string) => {
+const translateKey = (key: string, lang: string) => {
   if (key === "itemCode") return null;
   const translations: Translations = {
     daegu: "대구",
@@ -230,18 +271,38 @@ const translateKey = (key: string) => {
     chungbuk: "충북",
     gyeongnam: "경남",
     gyeonggi: "경기",
+    northGyeonggi: "경기북부",
+    southGyeonggi: "경기남부",
+    yeongdong: "영동",
+    yeongseo: "영서",
   };
-  return translations[key] || key;
+  const reversedTranslations: { [key: string]: string } = Object.entries(
+    translations
+  ).reduce<{ [key: string]: string }>((acc, [eng, kor]) => {
+    acc[kor] = eng;
+    return acc;
+  }, {});
+
+  if (lang === "eng") {
+    return translations[key] || key;
+  } else if (lang === "kor") {
+    return reversedTranslations[key] || key;
+  }
+  return "city";
 };
 
 interface AirQualityListProps {
   selectedTab: string;
   selectedSubTab: number;
+  onLoadingChange: (isLoading: boolean) => void;
+  tomAirData: object;
 }
 
 const AirQualityList: React.FC<AirQualityListProps> = ({
   selectedTab,
   selectedSubTab,
+  onLoadingChange,
+  tomAirData,
 }) => {
   if (!selectedTab) {
     selectedTab = "PM10";
@@ -251,12 +312,16 @@ const AirQualityList: React.FC<AirQualityListProps> = ({
     ["airLocalData", selectedTab, selectedSubTab],
     () => getCtprvnMesureLIst(selectedTab, selectedSubTab)
   );
+  useEffect(() => {
+    onLoadingChange(isLoading);
+  }, [isLoading]);
+
   const [isPopOpen, setIsPopOpen] = useState(false);
   const [locationNm, setLocationNm] = useState("");
   const [locationEnNm, setLocationEnNm] = useState<string>("");
   const openPopup = (name: string | null) => {
     if (name) {
-      setLocationNm(translateKey(name) || "");
+      setLocationNm(translateKey(name, "eng") || "");
       setLocationEnNm(name);
     }
     setIsPopOpen(true);
@@ -283,7 +348,7 @@ const AirQualityList: React.FC<AirQualityListProps> = ({
                   key={`${key}-${i}`}
                   className={"city_" + key}
                 >
-                  <em className="city_nm">{translateKey(key)}</em>
+                  <em className="city_nm">{translateKey(key, "eng")}</em>
                   {selectedTab && (
                     <a className={getAirQualityClassName(value, selectedTab)}>
                       <span className="air_condition">
@@ -297,12 +362,37 @@ const AirQualityList: React.FC<AirQualityListProps> = ({
             } else if (key === "dataTime") {
               return (
                 <li key={key} className="air_dataTime">
-                  {value}
+                  <span
+                    onClick={() =>
+                      getCtprvnMesureLIst(selectedTab, selectedSubTab)
+                    }
+                    className="material-symbols-outlined"
+                  >
+                    refresh
+                  </span>
+                  <span>{value}</span>
                 </li>
               );
             } else {
               return null;
             }
+          })}
+        {tomAirData &&
+          Object.entries(tomAirData).map(([key, value], i) => {
+            return (
+              <li key={i} className={"city_" + (translateKey(key, "kor") || i)}>
+                <em className="city_nm">{key}</em>
+                <span className="air_condition air_condition_tom">
+                  <a
+                    className={getAirQualityKorConClsNm(value)}
+                    href="javascript:;"
+                  >
+                    <span className="screen_out">{key}</span>
+                    <span className="air_state">{value}</span>
+                  </a>
+                </span>
+              </li>
+            );
           })}
       </AirQualityUl>
       <AirStatePopup
