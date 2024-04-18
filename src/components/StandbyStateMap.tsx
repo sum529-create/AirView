@@ -26,11 +26,11 @@ const StandbyStateMap: React.FC<{ images: any; state: string }> = ({
     if (hour >= 22 || hour < 9) {
       setTickMarks(["12", "03", "09"]); // 22~09시
     } else if (hour >= 9 && hour < 11) {
-      setTickMarks(["9", "15", "21"]); // 09~12시
-    } else if (hour >= 11 && hour < 18) {
-      setTickMarks(["12", "18", "00"]); // 12~18시
+      setTickMarks(["9", "15", "21"]); // 09~11시
+    } else if (hour >= 11 && hour < 17) {
+      setTickMarks(["12", "18", "00"]); // 11~17시
     } else {
-      setTickMarks(["06", "12", "18"]); // 18~22시
+      setTickMarks(["06", "12", "18"]); // 17~22시
     }
   }, [images]);
   const handleChange = (e: ChangeEvent<HTMLInputElement> | string) => {
@@ -100,19 +100,21 @@ const StandbyStateMap: React.FC<{ images: any; state: string }> = ({
             </span>
           </button>
         )}
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={(currentImgIdx / (images.length - 1)) * 100}
-          onChange={handleChange}
-        />
-        <div className="tick-marks">
-          {tickMarks.map((mark, index) => (
-            <div key={index} className="tick-mark-point">
-              <span>{mark}</span>
-            </div>
-          ))}
+        <div className="range-area">
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={(currentImgIdx / (images.length - 1)) * 100}
+            onChange={handleChange}
+          />
+          <div className="tick-marks">
+            {tickMarks.map((mark, index) => (
+              <div key={index} className="tick-mark-point">
+                <span>{mark}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

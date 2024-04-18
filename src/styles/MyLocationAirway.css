@@ -1,0 +1,25 @@
+.card .air-quality-top {
+  display: flex;
+  align-items: center;
+  padding: 18px;
+  background: #efefef;
+  border-radius: 15px;
+  margin: 0 18px;
+}
+.card .air-quality-top h1 {
+  font-size: 46px;
+  font-weight: 700;
+  display: block;
+  padding-right: 15px;
+}
+.card .air-quality-top .air-quality-sub {
+  display: flex;
+  flex-direction: column;
+}
+.card .air-quality-top .air-quality-sub .air-quality-grade {
+  font-weight: 600;
+}
+.card .air-quality-top .air-quality-sub .air-quality-index {
+  color: #666;
+  font-size: 14px;
+}

@@ -6,6 +6,7 @@ const app = express();
 const app2 = express();
 const app3 = express();
 const app4 = express();
+const app5 = express();
 
 const BASE_URL = "https://apis.data.go.kr/B552584";
 
@@ -36,6 +37,14 @@ app3.use((req, res, next) => {
 });
 app4.use(cors());
 app4.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true"); // 인증 정보 포함 허용
+  next();
+});
+app5.use(cors());
+app5.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
@@ -91,9 +100,22 @@ app3.get("/api/getCtprvnMesureSidoLIst", async (req, res) => {
   }
 });
 app4.get("/api/getNearbyMsrstnList", async (req, res) => {
-  const API_URL = `${BASE_URL}/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty`;
+  const API_URL = `${BASE_URL}/MsrstnInfoInqireSvc/getNearbyMsrstnList`;
   const { returnType, tmX, tmY, ver } = req.query;
   const url = `${API_URL}?serviceKey=${process.env.REACT_APP_API_KEY}&returnType=${returnType}&tmX=${tmX}&tmY=${tmY}&ver=${ver}`;
+  try {
+    const response = await axios.get(url);
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+app5.get("/api/getMsrstnAcctoRltmMesureDnsty", async (req, res) => {
+  const API_URL = `${BASE_URL}/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty`;
+  const { returnType, numOfRows, pageNo, stationName, dataTerm, ver } =
+    req.query;
+  const url = `${API_URL}?serviceKey=${process.env.REACT_APP_API_KEY}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&stationName=${stationName}&dataTerm=${dataTerm}&ver=${ver}`;
   try {
     const response = await axios.get(url);
     res.json(response.data);
@@ -119,4 +141,8 @@ app3.listen(PORT3, () => {
 const PORT4 = process.env.PORT4 || 5003;
 app4.listen(PORT4, () => {
   console.log(`Server4 is running on port ${PORT4}`);
+});
+const PORT5 = process.env.PORT5 || 5004;
+app5.listen(PORT5, () => {
+  console.log(`Server5 is running on port ${PORT5}`);
 });

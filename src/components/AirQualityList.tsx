@@ -383,10 +383,7 @@ const AirQualityList: React.FC<AirQualityListProps> = ({
               <li key={i} className={"city_" + (translateKey(key, "kor") || i)}>
                 <em className="city_nm">{key}</em>
                 <span className="air_condition air_condition_tom">
-                  <a
-                    className={getAirQualityKorConClsNm(value)}
-                    href="javascript:;"
-                  >
+                  <a className={getAirQualityKorConClsNm(value)}>
                     <span className="screen_out">{key}</span>
                     <span className="air_state">{value}</span>
                   </a>

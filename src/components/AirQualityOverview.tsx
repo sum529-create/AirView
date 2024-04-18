@@ -108,16 +108,26 @@ const TodayWeatherArea = styled.div`
 const AirQualityArea = styled.div`
   min-height: 1000px;
   background: #fff;
-  padding: 10px;
-  .sub-title {
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 18px;
-    margin: 10px 0px;
-    color: #666;
-    padding-left: 18px;
+  .card {
+    width: 100%;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    .sub-title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      margin: 10px 18px;
+      color: #666;
+      @media (max-width: 768px) {
+        font-size: 20px;
+      }
+    }
     @media (max-width: 768px) {
-      font-size: 20px;
+      width: 100%;
     }
   }
 `;
@@ -230,10 +240,12 @@ function AirQualityOverview({
       </TodayWeatherArea>
       <AirQualityArea>
         <MyLocationAirway />
-        <p className="sub-title">대기 상태 지도</p>
-        <div className="airQuality">
-          <StandbyStateMap images={images1} state="pm10" />
-          <StandbyStateMap images={images2} state="pm2.5" />
+        <div className="card">
+          <p className="sub-title">대기 상태 지도</p>
+          <div className="airQuality">
+            <StandbyStateMap images={images1} state="pm10" />
+            <StandbyStateMap images={images2} state="pm2.5" />
+          </div>
         </div>
       </AirQualityArea>
     </>

@@ -28,6 +28,7 @@ ul.sido_area {
   text-align: center;
   border-radius: 50px;
   margin: 0 auto;
+  font-weight: 600;
 }
 @media (max-width: 768px) {
   .sido_area li.cityArea-mo {
@@ -65,6 +66,7 @@ ul.sido_area {
 }
 .sido_area .air_veryBad {
   background-color: #e84118;
+  color: #fff;
 }
 /* Seoul */
 .seoul .Gangnam-gu {

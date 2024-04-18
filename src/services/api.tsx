@@ -57,6 +57,9 @@ export async function getCtprvnMesureLIst(
   }
 }
 export async function getCtprvnMesureSidoLIst(sidoName: string) {
+  if (!sidoName) {
+    return null;
+  }
   try {
     const res = await axios.get(
       "http://localhost:5002/api/getCtprvnMesureSidoLIst",
@@ -77,7 +80,10 @@ export async function getCtprvnMesureSidoLIst(sidoName: string) {
     throw new Error("Failed to fetch data");
   }
 }
-export async function getNearbyMsrstnList(tmX: string, tmY: string) {
+export async function getNearbyMsrstnList(tmX: number, tmY: number) {
+  if (!tmX || !tmY) {
+    return null;
+  }
   try {
     const res = await axios.get(
       "http://localhost:5003/api/getNearbyMsrstnList",
@@ -87,6 +93,30 @@ export async function getNearbyMsrstnList(tmX: string, tmY: string) {
           tmX: tmX,
           tmY: tmY,
           ver: "1.1",
+        },
+      }
+    );
+    return res.data.response.body.items;
+  } catch (error) {
+    console.error("fetching data error");
+    throw new Error("Failed to fetch data");
+  }
+}
+export async function getMsrstnAcctoRltmMesureDnsty(stationName: string) {
+  if (!stationName) {
+    return null;
+  }
+  try {
+    const res = await axios.get(
+      "http://localhost:5004/api/getMsrstnAcctoRltmMesureDnsty",
+      {
+        params: {
+          returnType: "json",
+          numOfRows: 100,
+          pageNo: 1,
+          stationName: stationName,
+          dataTerm: "DAILY",
+          ver: "1.0",
         },
       }
     );
