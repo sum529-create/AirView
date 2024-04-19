@@ -5,6 +5,7 @@ import {
   getNearbyMsrstnList,
 } from "../services/api";
 import "../styles/MyLocationAirway.css";
+import AirPopup from "./AirPopup";
 
 const GradeAirValue = (grade: string) => {
   switch (grade) {
@@ -24,6 +25,7 @@ const MyLocationAirway = () => {
   const [error, setError] = useState<string | null>(null);
   const [addr, setAddr] = useState<string | null>(null);
   const [stationName, setStationName] = useState<string | null>(null);
+  const [isPopOpen, setIsPopOpen] = useState(false);
   const proj4 = require("proj4").default;
 
   const wgs84 = proj4("EPSG:4326");
@@ -81,27 +83,52 @@ const MyLocationAirway = () => {
       enabled: !!stationName,
     }
   );
+  const openPopup = () => {
+    setIsPopOpen(true);
+  };
+  const closePopup = () => {
+    setIsPopOpen(false);
+  };
 
   return (
     <>
       {error ? <p>Error: {error}</p> : null}
-      {!isLoadingStation && !isLoadingInfo ? (
+      {!isLoadingStation && !isLoadingInfo && airAreaInfo ? (
         <div className="card">
           <p className="sub-title">{addr} 대기정보</p>
-          <div className="air-quality-top">
-            <h1>{airAreaInfo[0].khaiValue}</h1>
-            <div className="air-quality-sub">
-              <span className="air-quality-grade">
-                {GradeAirValue(airAreaInfo[0].khaiGrade)}
+          <div className="air-quality-sec">
+            <div className="air-quality-top">
+              <h1>{airAreaInfo[0].khaiValue}</h1>
+              <div className="air-quality-sub">
+                <span className="air-quality-grade">
+                  {GradeAirValue(airAreaInfo[0].khaiGrade)}
+                </span>
+                <span className="air-quality-index">통합대기환경지수(CAI)</span>
+              </div>
+            </div>
+            <div className="air-quality-bar">
+              <input
+                type="range"
+                min="0"
+                max="500"
+                value={airAreaInfo[0].khaiValue}
+              />
+            </div>
+            <div className="cai-info">
+              <span
+                onClick={() => openPopup()}
+                className="material-symbols-outlined air_info"
+              >
+                info
               </span>
-              <span className="air-quality-index">통합대기환경지수(CAI)</span>
+              통합대기환경지수(CAI)
             </div>
           </div>
-          <div className="air-quality-bar"></div>
         </div>
       ) : (
         <p>Loading location...</p>
       )}
+      <AirPopup isPopOpen={isPopOpen} onClose={closePopup} itemCode={"CAI"} />
     </>
   );
 };

@@ -1,10 +1,12 @@
-.card .air-quality-top {
-  display: flex;
-  align-items: center;
-  padding: 18px;
+.card .air-quality-sec {
   background: #efefef;
   border-radius: 15px;
   margin: 0 18px;
+  padding: 18px;
+}
+.card .air-quality-top {
+  align-items: center;
+  display: flex;
 }
 .card .air-quality-top h1 {
   font-size: 46px;
@@ -22,4 +24,27 @@
 .card .air-quality-top .air-quality-sub .air-quality-index {
   color: #666;
   font-size: 14px;
+}
+.card .air-quality-bar {
+  margin: 10px 0;
+}
+.card .air-quality-bar input[type="range"] {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  height: 12px;
+  box-shadow: inset -1px 1px 5px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  accent-color: #2f3542;
+  cursor: pointer;
+  -webkit-appearance: none;
+  background: linear-gradient(
+    90deg,
+    #4d6ad6 0%,
+    #4d6ad6 5%,
+    #89d538 15%,
+    #efc03e 35%,
+    #d93030 60%,
+    #d93030 100%
+  );
 }

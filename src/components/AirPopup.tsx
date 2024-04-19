@@ -115,7 +115,17 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
               <div className="air_grade_info air_good">
                 <div className="air_grade_tit">
                   <h2>좋음</h2>
-                  <span className="air_grade_state_mo">PM₁₀ 0~30(㎍/ m²)</span>
+                  <span className="air_grade_state_mo">
+                    {itemCode === "PM10"
+                      ? "PM₁₀ 0~30(㎍/ m²)"
+                      : itemCode === "PM25"
+                      ? "PM₂․₅ 0~15(㎍/ m²)"
+                      : itemCode === "SO2"
+                      ? "0 ~ 30 ppb"
+                      : itemCode === "CO"
+                      ? "0 ~ 2.0 ppm"
+                      : "0 ~ 0.03 ppm"}
+                  </span>
                 </div>
                 <div className="air_grade_txt">
                   대기오염 관련 진환자군에서도 영향이 유발되지 않을 수준
@@ -156,7 +166,19 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
               <div className="air_grade_info air_normal">
                 <div className="air_grade_tit">
                   <h2>보통</h2>
-                  <span className="air_grade_state_mo">PM₁₀ 31~80(㎍/ m²)</span>
+                  <span className="air_grade_state_mo">
+                    {itemCode === "PM10"
+                      ? "PM₁₀ 31~80(㎍/ m²)"
+                      : itemCode === "PM25"
+                      ? "PM₂․₅ 16~35(㎍/ m²)"
+                      : itemCode === "SO2"
+                      ? "31 ~ 100 ppb"
+                      : itemCode === "CO"
+                      ? "2.1 ~ 9.0 ppm"
+                      : itemCode === "O3"
+                      ? "0.031 ~ 0.09 ppm"
+                      : "0.031 ~ 0.06 ppm"}
+                  </span>
                 </div>
                 <div className="air_grade_txt">
                   환자군에게 만성 노출시 경미한 영향이 유발될 수 있는 수준
@@ -199,7 +221,17 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                 <div className="air_grade_tit">
                   <h2>나쁨</h2>
                   <span className="air_grade_state_mo">
-                    PM₁₀ 81~150(㎍/ m²)
+                    {itemCode === "PM10"
+                      ? "PM₁₀ 81~150(㎍/ m²)"
+                      : itemCode === "PM25"
+                      ? "PM₂․₅ 36~75(㎍/ m²)"
+                      : itemCode === "SO2"
+                      ? "101 ~ 200 ppb"
+                      : itemCode === "CO"
+                      ? "9,1 ~ 15.0 ppm"
+                      : itemCode === "O3"
+                      ? "0.091 ~ 0.15 ppm"
+                      : "0.061 ~ 0.2 ppm"}
                   </span>
                 </div>
                 <div className="air_grade_txt">
@@ -263,7 +295,17 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                 <div className="air_grade_tit">
                   <h2>매우나쁨</h2>
                   <span className="air_grade_state_mo">
-                    PM₁₀ 151(㎍/ m²)이상
+                    {itemCode === "PM10"
+                      ? "PM₁₀ 151(㎍/ m²)이상"
+                      : itemCode === "PM25"
+                      ? "PM₂․₅ 76(㎍/ m²)이상"
+                      : itemCode === "SO2"
+                      ? "201 ppb 이상"
+                      : itemCode === "CO"
+                      ? "15.1 ppm 이상"
+                      : itemCode === "O3"
+                      ? "0.151 ppm 이상"
+                      : "0.201 ppm 이상"}
                   </span>
                 </div>
                 <div className="air_grade_txt">
