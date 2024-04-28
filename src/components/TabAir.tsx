@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { formateDate } from "../utils/helpers";
 import AirPopup from "./AirPopup";
@@ -25,6 +25,20 @@ const WrapTab = styled.div`
   background: #fff;
   margin-bottom: 10px;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  .sel_tab_mo_hid{
+    display:none;
+  }
+  .sel_tab_mo{
+    display: flex;
+    height: 50px;
+    font-size: 18px;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    background: #38ada9;
+    color: #FFF;
+    font-weight: 600;
+  }
   .main_tab {
     background: #38ada9;
     height: 50px;
@@ -127,14 +141,14 @@ const WrapTab = styled.div`
     display: none;
   }
   @media (max-width: 768px) {
-    height: 40px;
+    /* height: 40px; */
     .main_tab_mo {
       height: auto;
       width: calc(100vw / 6);
       min-width: 107px;
       position: absolute;
       z-index: 100;
-      margin-top: 40px;
+      /* margin-top: 40px; */
       box-shadow: 1px 12px 10px 5px rgba(0, 0, 0, 0.11);
       display: block;
       animation: ${fadeIn} 0.5s linear forwards;
@@ -146,11 +160,12 @@ const WrapTab = styled.div`
     .nav_item_mo {
       display: block;
       cursor: pointer;
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       background: #38ada9;
       color: #fff;
       float: left;
+      padding: 5px;
       span {
         font-size: 40px;
       }
@@ -175,6 +190,7 @@ const TabAir: React.FC<TabAirProps> = ({ onSelectTab, onSelectSubTab }) => {
   const [isSelectedTab, setIsSelectedTab] = useState("PM10");
   const [isPopOpen, setIsPopOpen] = useState(false);
   const [isMainTabMo, setIsMainTabMo] = useState(false);
+  const [isMobileSize, setIsMobileSize] = useState(false);
   const [isSelectedSubTab, setIsSelectedSubTab] = useState(0);
   const openPopup = (tab: string) => {
     setIsPopOpen(true);
@@ -201,9 +217,38 @@ const TabAir: React.FC<TabAirProps> = ({ onSelectTab, onSelectSubTab }) => {
   const openMobileTab = () => {
     setIsMainTabMo((e) => !e);
   };
+  useEffect(() => {
+    function handleResize() {
+      const newIsMainTabMo = window.innerWidth < 768; 
+      setIsMobileSize(newIsMainTabMo);
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
     <>
       <WrapTab>
+        <div onClick={openMobileTab} className="nav_item_mo">
+          <span className="material-symbols-outlined">list</span>
+        </div>
+        <div className={isMobileSize ? "sel_tab_mo" : "sel_tab_mo_hid"}>
+          {
+            isSelectedTab === "PM10" 
+            ? isSelectedTab + " (미세먼지)"
+            : isSelectedTab === "PM25"
+            ? "PM2.5 (초미세먼지)"
+            : isSelectedTab === "O3"
+            ? isSelectedTab + " (오존)"
+            : isSelectedTab === "SO2"
+            ? isSelectedTab + " (아황산가스)"
+            : isSelectedTab === "CO"
+            ? isSelectedTab + " (일산화탄소)"
+            : isSelectedTab + " (이산화질소)"
+          }
+        </div>
         <div
           className={`main_tab ${
             isMainTabMo ? "main_tab_mo" : "main_tab_mo_hid"
@@ -313,9 +358,6 @@ const TabAir: React.FC<TabAirProps> = ({ onSelectTab, onSelectSubTab }) => {
               </span>
             </li>
           </ul>
-        </div>
-        <div onClick={openMobileTab} className="nav_item_mo">
-          <span className="material-symbols-outlined">list</span>
         </div>
         <div className="sub_tab">
           <ul>

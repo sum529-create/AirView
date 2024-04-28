@@ -3,32 +3,33 @@
   border-radius: 15px;
   margin: 0 18px;
   padding: 18px;
+  word-break: keep-all;
 }
-.card .air-quality-top {
+.card .air-quality-sec .air-quality-top {
   align-items: center;
   display: flex;
 }
-.card .air-quality-top h1 {
+.card .air-quality-sec .air-quality-top h1 {
   font-size: 46px;
   font-weight: 700;
   display: block;
   padding-right: 15px;
 }
-.card .air-quality-top .air-quality-sub {
+.card .air-quality-sec .air-quality-top .air-quality-sub {
   display: flex;
   flex-direction: column;
 }
-.card .air-quality-top .air-quality-sub .air-quality-grade {
+.card .air-quality-sec .air-quality-top .air-quality-sub .air-quality-grade {
   font-weight: 600;
 }
-.card .air-quality-top .air-quality-sub .air-quality-index {
+.card .air-quality-sec .air-quality-top .air-quality-sub .air-quality-index {
   color: #666;
   font-size: 14px;
 }
-.card .air-quality-bar {
+.card .air-quality-sec .air-quality-bar {
   margin: 10px 0;
 }
-.card .air-quality-bar input[type="range"] {
+.card .air-quality-sec .air-quality-bar input[type="range"] {
   position: relative;
   width: 100%;
   z-index: 1;
@@ -47,4 +48,94 @@
     #d93030 60%,
     #d93030 100%
   );
+}
+.card .cai-info{
+  line-height: 1;
+  font-size: 12px;
+  color:#666;
+}
+.card .cai-info .air_info{
+  cursor: pointer;
+  float: left;
+  margin-right: 7px;
+  font-size: 14px;
+}
+.card .air-quality-sec .air-quality-sum {
+  line-height:2
+}
+.card .air-quality-sec .air-quality-sum b{
+  font-weight: 600;
+}
+.card .air-quality-sec.circles-area{
+  height: 300px;
+}
+.card .air-quality-sec.circles-area-sm{
+  height: 407px;
+}
+.card .air-quality-sec .air-quality-item{
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #fff;
+}
+.card .air-quality-sec .air-quality-item .air-quality-range{
+  position: relative;
+}
+.card .air-quality-sec .air-quality-item .air-quality-range span{
+  position: absolute;
+  top: 41px;
+  left: 46px;
+  font-size: 28px;
+  font-weight: 600;
+}
+.card .air-quality-sec .air-quality-item .air-quality-range .air-value-sm{
+  font-size: 14px;
+  top: 26px;
+  left: 20px;
+}
+.card .air-quality-sec .air-quality-item .air-quality-range .air-value-sm.co{
+  left: 27px;
+}
+.card .air-quality-sec .air-quality-item .air-quality-txt {
+  padding-left: 140px;
+  height: 120px;
+  align-content: center;
+}
+.card .air-quality-sec .air-quality-item .air-quality-txt.sm {
+  padding-left: 90px;
+  height: 70px;
+}
+.card .air-quality-sec .air-quality-item .air-quality-txt .state-info h2{
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.card .air-quality-sec .air-quality-item .air-quality-txt.sm .state-info h2{
+  margin-bottom: 5px;
+}
+.card .air-quality-sec .air-quality-item .air-quality-txt .state-info p{
+  margin-bottom: 3px;
+}
+.card .air-quality-sec .air-quality-item .air-quality-txt .state-info .air_type{
+  font-weight: 500;
+}
+.card .air-quality-sec .air-quality-item .air-quality-txt.sm .state-info .air_type{
+  font-size: 14px;
+}
+.card .air-quality-sec .air-quality-item .air-quality-txt .state-info .air_num_data{
+  color: #333;
+  font-weight: 500;
+}
+.card .air-quality-sec .air-quality-item .air-quality-txt.sm .state-info .air_num_data{
+  font-size:12px;
+  color: #666;
+}
+.card .air-quality-sec .air-quality-item .air-quality-txt .state-info .sum_txt{
+  color:#666;
+  font-size: 14px;
+}
+
+@media (max-width: 768px){
+  .card .air-quality-sec.circles-area{
+    height:204px;
+  }
 }

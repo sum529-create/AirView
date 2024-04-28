@@ -54,54 +54,64 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
         {/* 팝업 내용 */}
         <div className="popup-body">
           <div className="air_definition">
-            <span className="material-symbols-outlined air_state_icon">
-              online_prediction
-            </span>
-            {itemCode === "PM10" || itemCode === "PM25" ? (
-              <>
-                <span className="air_definition_state">
-                  미세먼지(PM10)와 초미세먼지(PM2.5)
-                </span>
-                <span>
-                  는 공기 중에 떠다니는 작은 입자로, 호흡기 질환과 심혈관 질환을
-                  유발할 수 있습니다.
-                </span>
-              </>
-            ) : itemCode === "SO2" ? (
-              <>
-                <span className="air_definition_state">아황산가스(SO2)</span>
-                <span>
-                  는 화학 반응을 통해 생성되며 호흡기 문제와 눈 건강에 영향을 줄
-                  수 있습니다.
-                </span>
-              </>
-            ) : itemCode === "CO" ? (
-              <>
-                <span className="air_definition_state">일산화탄소(CO)</span>
-                <span>
-                  는 무색, 무취의 독성 가스로, 호흡 및 순환기계에 침투하여 중독
-                  및 생명에 위험을 초래할 수 있습니다.
-                </span>
-              </>
-            ) : itemCode === "O3" ? (
-              <>
-                <span className="air_definition_state">오존(O3)</span>
-                <span>
-                  는 대기 중에 산소와 반응하여 생성되는 오존으로, 호흡기를
-                  자극하고 폐 기능을 손상시킬 수 있습니다.
-                </span>
-              </>
-            ) : itemCode === "NO2" ? (
-              <>
-                <span className="air_definition_state">이산화질소(NO2)</span>
-                <span>
-                  는 대기 중에 일산화질소와 반응하여 생성되는 가스로, 호흡기
-                  감염 및 천식 발작을 유발할 수 있습니다.
-                </span>
-              </>
-            ) : (
-              ""
-            )}
+            <div>
+              <span className="material-symbols-outlined air_state_icon">
+                online_prediction
+              </span>
+              {itemCode === "PM10" || itemCode === "PM25" ? (
+                <>
+                  <span className="air_definition_state">
+                    미세먼지(PM10)와 초미세먼지(PM2.5)
+                  </span>
+                  <span>
+                    는 공기 중에 떠다니는 작은 입자로, 호흡기 질환과 심혈관 질환을
+                    유발할 수 있습니다.
+                  </span>
+                </>
+              ) : itemCode === "SO2" ? (
+                <>
+                  <span className="air_definition_state">아황산가스(SO2)</span>
+                  <span>
+                    는 화학 반응을 통해 생성되며 호흡기 문제와 눈 건강에 영향을 줄
+                    수 있습니다.
+                  </span>
+                </>
+              ) : itemCode === "CO" ? (
+                <>
+                  <span className="air_definition_state">일산화탄소(CO)</span>
+                  <span>
+                    는 무색, 무취의 독성 가스로, 호흡 및 순환기계에 침투하여 중독
+                    및 생명에 위험을 초래할 수 있습니다.
+                  </span>
+                </>
+              ) : itemCode === "O3" ? (
+                <>
+                  <span className="air_definition_state">오존(O3)</span>
+                  <span>
+                    는 대기 중에 산소와 반응하여 생성되는 오존으로, 호흡기를
+                    자극하고 폐 기능을 손상시킬 수 있습니다.
+                  </span>
+                </>
+              ) : itemCode === "NO2" ? (
+                <>
+                  <span className="air_definition_state">이산화질소(NO2)</span>
+                  <span>
+                    는 대기 중에 일산화질소와 반응하여 생성되는 가스로, 호흡기
+                    감염 및 천식 발작을 유발할 수 있습니다.
+                  </span>
+                </>
+              ) : itemCode === "CAI" ? (
+                <>
+                  <span className="air_definition_state">통합대기환경지수(CAI)</span>
+                  <span>
+                    는 대기오염 정도를 국민이 쉽게 파악하고 예방 조치를 취할 수 있도록 하는 지표입니다. 대기오염에 따른 건강 영향과 체감 오염 정도를 고려하여 개발되었습니다.
+                  </span>
+                  
+                </>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
           <ul className="pol_standards">
             <li>
@@ -121,10 +131,15 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                       : itemCode === "PM25"
                       ? "PM₂․₅ 0~15(㎍/ m²)"
                       : itemCode === "SO2"
-                      ? "0 ~ 30 ppb"
+                      ? "0 ~ 0.02 ppm"
                       : itemCode === "CO"
                       ? "0 ~ 2.0 ppm"
-                      : "0 ~ 0.03 ppm"}
+                      : itemCode === "NO2"
+                      ? "0 ~ 0.03 ppm"
+                      : itemCode === "CAI"
+                      ? "0 ~ 50"
+                      : ""
+                    }
                   </span>
                 </div>
                 <div className="air_grade_txt">
@@ -172,12 +187,17 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                       : itemCode === "PM25"
                       ? "PM₂․₅ 16~35(㎍/ m²)"
                       : itemCode === "SO2"
-                      ? "31 ~ 100 ppb"
+                      ? "0.021 ~ 0.05 ppm"
                       : itemCode === "CO"
                       ? "2.1 ~ 9.0 ppm"
                       : itemCode === "O3"
                       ? "0.031 ~ 0.09 ppm"
-                      : "0.031 ~ 0.06 ppm"}
+                      : itemCode === "NO2"
+                      ? "0.031 ~ 0.06 ppm"
+                      : itemCode === "CAI"
+                      ? "51 ~ 100"
+                      : ""
+                    }
                   </span>
                 </div>
                 <div className="air_grade_txt">
@@ -226,12 +246,17 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                       : itemCode === "PM25"
                       ? "PM₂․₅ 36~75(㎍/ m²)"
                       : itemCode === "SO2"
-                      ? "101 ~ 200 ppb"
+                      ? "0.051 ~ 0.15 ppm"
                       : itemCode === "CO"
                       ? "9,1 ~ 15.0 ppm"
                       : itemCode === "O3"
                       ? "0.091 ~ 0.15 ppm"
-                      : "0.061 ~ 0.2 ppm"}
+                      : itemCode === "NO2"
+                      ? "0.061 ~ 0.2 ppm"
+                      : itemCode === "CAI"
+                      ? "101 ~ 250"
+                      : ""
+                    }
                   </span>
                 </div>
                 <div className="air_grade_txt">
@@ -296,16 +321,21 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                   <h2>매우나쁨</h2>
                   <span className="air_grade_state_mo">
                     {itemCode === "PM10"
-                      ? "PM₁₀ 151(㎍/ m²)이상"
+                      ? "PM₁₀ 151(㎍/ m²) ~"
                       : itemCode === "PM25"
-                      ? "PM₂․₅ 76(㎍/ m²)이상"
+                      ? "PM₂․₅ 76(㎍/ m²) ~"
                       : itemCode === "SO2"
-                      ? "201 ppb 이상"
+                      ? "0.151 ppm ~"
                       : itemCode === "CO"
-                      ? "15.1 ppm 이상"
+                      ? "15.01 ppm ~"
                       : itemCode === "O3"
-                      ? "0.151 ppm 이상"
-                      : "0.201 ppm 이상"}
+                      ? "0.151 ppm ~"
+                      : itemCode === "NO2"
+                      ? "0.201 ppm ~"
+                      : itemCode === "CAI"
+                      ? "251 ~"
+                      : ""
+                    }
                   </span>
                 </div>
                 <div className="air_grade_txt">
@@ -347,7 +377,7 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                   : itemCode === "PM25"
                   ? "PM₂․₅ 0~15(㎍/ m²)"
                   : itemCode === "SO2"
-                  ? "0 ~ 30 ppb"
+                  ? "0 ~ 0.02 ppm"
                   : itemCode === "CO"
                   ? "0 ~ 2.0 ppm"
                   : "0 ~ 0.03 ppm"}
@@ -361,7 +391,7 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                   : itemCode === "PM25"
                   ? "PM₂․₅ 16~35(㎍/ m²)"
                   : itemCode === "SO2"
-                  ? "31 ~ 100 ppb"
+                  ? "0.021 ~ 0.05 ppm"
                   : itemCode === "CO"
                   ? "2.1 ~ 9.0 ppm"
                   : itemCode === "O3"
@@ -377,7 +407,7 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                   : itemCode === "PM25"
                   ? "PM₂․₅ 36~75(㎍/ m²)"
                   : itemCode === "SO2"
-                  ? "101 ~ 200 ppb"
+                  ? "0.051 ~ 0.15 ppm"
                   : itemCode === "CO"
                   ? "9,1 ~ 15.0 ppm"
                   : itemCode === "O3"
@@ -389,16 +419,16 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
             <div className="air_grade_verybad">
               <div className="air_grade_verybad_txt">
                 {itemCode === "PM10"
-                  ? "PM₁₀ 151(㎍/ m²)이상"
+                  ? "PM₁₀ 151(㎍/ m²)~"
                   : itemCode === "PM25"
-                  ? "PM₂․₅ 76(㎍/ m²)이상"
+                  ? "PM₂․₅ 76(㎍/ m²)~"
                   : itemCode === "SO2"
-                  ? "201 ppb 이상"
+                  ? "0.151 ppm ~"
                   : itemCode === "CO"
-                  ? "15.1 ppm 이상"
+                  ? "15.1 ppm ~"
                   : itemCode === "O3"
-                  ? "0.151 ppm 이상"
-                  : "0.201 ppm 이상"}
+                  ? "0.151 ppm ~"
+                  : "0.201 ppm ~"}
               </div>
               <img src={process.env.PUBLIC_URL + "/images/triangle_icon.png"} />
             </div>

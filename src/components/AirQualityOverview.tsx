@@ -123,7 +123,7 @@ const AirQualityArea = styled.div`
       margin: 10px 18px;
       color: #666;
       @media (max-width: 768px) {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
     @media (max-width: 768px) {

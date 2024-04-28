@@ -121,7 +121,7 @@
   position: relative;
   z-index: 1;
   top: -4px;
-  right: 61px;
+  right: 63px;
   height: 45px;
   filter: invert(62%) sepia(8%) saturate(2892%) hue-rotate(129deg)
     brightness(93%) contrast(88%);
@@ -144,9 +144,10 @@
   height: calc(100% - 70px);
 }
 .popup-content .popup-body .air_definition {
-  height: 60px;
+  height: 80px;
   word-break: keep-all;
   text-align: center;
+  align-content: center;
   padding: 10px;
   border-bottom: 1px solid #2dd2d2;
   border-top: 1px solid #2dd2d2;
@@ -182,7 +183,7 @@
 }
 .popup-content .popup-body .pol_standards .air_grade_info .air_grade_tit h2 {
   display: inline-block;
-  width: 56px;
+  width: 65px;
   font-weight: 600;
 }
 .popup-content
@@ -245,7 +246,7 @@
 .popup-content .popup-body .air_grade_dir div div {
   text-align: center;
   background: #fff;
-  padding: 8px 0px 8px 22px;
+  padding: 8px 0px 8px 18px;
   font-weight: 600;
   width: 86%;
 }
@@ -340,7 +341,7 @@
     display: inline-block;
     font-size: 14px;
     font-weight: 700;
-    width: 131px;
+    width: 135px;
   }
   .popup-content
     .popup-body
@@ -464,7 +465,7 @@
     .air_grade_tit
     .air_grade_state_mo {
     font-size: 12px;
-    width: 114px;
+    width: 120px;
     word-break: keep-all;
   }
   .popup-content .popup-body .pol_standards .air_grade_info .air_grade_txt {
