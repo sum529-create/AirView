@@ -244,6 +244,17 @@ const AirQualityUl = styled.ul`
       top: 3px;
       margin-right: 3px;
       cursor: pointer;
+      &.rotating{
+        animation: rotate 1s linear infinite;
+      }
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
     }
   }
 `;
@@ -319,6 +330,7 @@ const AirQualityList: React.FC<AirQualityListProps> = ({
   const [isPopOpen, setIsPopOpen] = useState(false);
   const [locationNm, setLocationNm] = useState("");
   const [locationEnNm, setLocationEnNm] = useState<string>("");
+  const [isRotating, setIsRotating] = useState(false);
   const openPopup = (name: string | null) => {
     if (name) {
       setLocationNm(translateKey(name, "eng") || "");
@@ -329,6 +341,16 @@ const AirQualityList: React.FC<AirQualityListProps> = ({
   const closePopup = () => {
     setIsPopOpen(false);
   };
+  const handleClick = async() => {
+    setIsRotating(true);
+    try {
+      await getCtprvnMesureLIst(selectedTab, selectedSubTab);
+    } catch (error) {
+      console.error('Error fetching data: ', error);
+    } finally{
+      setIsRotating(false);
+    }
+  }
 
   if (isLoading) return <Loading />;
 
@@ -363,10 +385,8 @@ const AirQualityList: React.FC<AirQualityListProps> = ({
               return (
                 <li key={key} className="air_dataTime">
                   <span
-                    onClick={() =>
-                      getCtprvnMesureLIst(selectedTab, selectedSubTab)
-                    }
-                    className="material-symbols-outlined"
+                    onClick={handleClick}
+                    className={`material-symbols-outlined ${isRotating ? 'rotating' : ''}`}
                   >
                     refresh
                   </span>

@@ -68,7 +68,7 @@ const TodayWeatherArea = styled.div`
   }
   @media (max-width: 768px) {
     position: initial;
-    height: 400px;
+    height: 300px;
     .todayAirTime {
       position: initial;
       width: 100%;
@@ -106,7 +106,6 @@ const TodayWeatherArea = styled.div`
   }
 `;
 const AirQualityArea = styled.div`
-  min-height: 1000px;
   background: #fff;
   .card {
     width: 100%;
@@ -203,8 +202,11 @@ function AirQualityOverview({
   }
 
   const texts = airTotalInfo
-    ? [airTotalInfo[0].informOverall, airTotalInfo[0].informCause]
-    : [];
+  ? [
+      airTotalInfo[0].informOverall.replace(/※.*/, ''),
+      airTotalInfo[0].informCause.replace(/※.*/, '')
+    ]
+  : [];
   const images1 = airTotalInfo
     ? [
         airTotalInfo[0].imageUrl1,

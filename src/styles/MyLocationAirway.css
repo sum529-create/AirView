@@ -133,7 +133,14 @@
   color:#666;
   font-size: 14px;
 }
-
+.card .info_txt{
+  color:#d93030;
+  word-break: keep-all;
+  text-indent: -16px;
+  padding-left: 16px;
+  font-weight: 600;
+  margin:0 18px;
+}
 @media (max-width: 768px){
   .card .air-quality-sec.circles-area{
     height:204px;

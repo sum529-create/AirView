@@ -74,3 +74,27 @@ export interface ICtprvnMesureSidoLIst {
   so2Value: string;
   totalCount: string;
 }
+
+export interface IMsrstnAcctoRltmMesureDnsty {
+  so2Grade: string;
+  coFlag: object;
+  khaiValue: string;
+  so2Value: string;
+  coValue: string;
+  pm25Flag: object;
+  pm10Flag: object;
+  pm10Value: string;
+  o3Grade: string;
+  khaiGrade: string;
+  pm25Value: string;
+  no2Flag: object;
+  no2Grade: string;
+  o3Flag: object;
+  pm25Grade: string;
+  so2Flag: object;
+  dataTime: string;
+  coGrade: string;
+  no2Value: string;
+  pm10Grade: string;
+  o3Value: string;
+}

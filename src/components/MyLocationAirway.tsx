@@ -7,6 +7,7 @@ import {
 import "../styles/MyLocationAirway.css";
 import AirPopup from "./AirPopup";
 import CircularSlider from "./CircularSlider";
+import AirStateCharts from "./AirStateCharts";
 
 const GradeAirValue = (grade: string) => {
   switch (grade) {
@@ -106,7 +107,6 @@ const MyLocationAirway = () => {
 
   return (
     <>
-      {!navigator.geolocation ? <p>사용자 위치정보 제공을 허용해주셔야 서비스 이용이 가능합니다.</p> : null}
       {!isLoadingStation && !isLoadingInfo && airAreaInfo && !error ? (
         <>
           <div className="card">
@@ -338,9 +338,12 @@ const MyLocationAirway = () => {
               </div>
             </div>
           </div>
+          <AirStateCharts data={airAreaInfo}/>
         </>
       ) : (
-        <p>Loading location...</p>
+        <div className="card">
+          <p className="info_txt">※ 사용자 위치정보 제공을 허용해주실 경우 현재 위치의 대기정보 서비스 이용이 가능합니다.</p>
+        </div>
       )}
       <AirPopup isPopOpen={isPopOpen} onClose={closePopup} itemCode={"CAI"} />
     </>
