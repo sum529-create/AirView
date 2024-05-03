@@ -1,97 +1,110 @@
 import ApexChart from "react-apexcharts";
-import React from 'react';
+import React from "react";
 import { IMsrstnAcctoRltmMesureDnsty } from "../utils/types";
-import { ApexOptions } from 'apexcharts';
+import { ApexOptions } from "apexcharts";
 
 interface IAirDataItem {
-    data: IMsrstnAcctoRltmMesureDnsty[];
+  data: IMsrstnAcctoRltmMesureDnsty[];
 }
 
 function AirStateCharts({ data }: IAirDataItem) {
-    // pm10Grade 값에 따른 텍스트 매핑
-    const gradeMap: { [key: string]: string } = {
-        '1': '좋음',
-        '2': '보통',
-        '3': '나쁨',
-        '4': '매우 나쁨',
-    };
-    const yAxisLabels = ['좋음', '보통', '나쁨', '매우 나쁨'];
+  const yAxisLabels = ["좋음", "보통", "나쁨", "매우 나쁨"];
 
-    // ApexCharts에 필요한 데이터 형식으로 변환
-    const chartData1 = data.map(item => ({
-        x: item.dataTime,
-        y: gradeMap[item.pm10Grade],
+  const gradeMap: { [key: string]: string } = {
+    "1": "좋음",
+    "2": "보통",
+    "3": "나쁨",
+    "4": "매우 나쁨",
+  };
+
+  const gradeColorMap: { [key: string]: string } = {
+    "1": "#1f77b4",
+    "2": "#2ca02c",
+    "3": "#ff7f0e",
+    "4": "#d62728",
+  };
+
+  const formatDateTime = (value: string) => {
+    const date = new Date(value);
+    const options = {
+      month: "2-digit" as const,
+      day: "2-digit" as const,
+      hour: "2-digit" as const,
+      minute: "2-digit" as const,
+      hour12: false,
+      timeZone: "Asia/Seoul",
+    };
+    return new Intl.DateTimeFormat("ko-KR", options).format(date);
+  };
+
+  const createChartData = (
+    data: IMsrstnAcctoRltmMesureDnsty[],
+    gradeKey: string
+  ) => {
+    return data.map((item: any) => ({
+      x: item.dataTime,
+      y: parseInt(item[gradeKey]),
+      color: gradeColorMap[item[gradeKey]],
     }));
-    const chartData2 = data.map(item => ({
-        x: item.dataTime,
-        y: gradeMap[item.pm10Grade],
-    }));
+  };
 
-    // 그래프 옵션 설정
-    const options1: ApexOptions = {
-        chart: {
-            type: 'bar',
-            height: 200,
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        xaxis: {
-            type: 'datetime',
-            categories: chartData1.map(item => item.x),
-        },
-        yaxis: {
-            labels: {
-                formatter: function (val: number) {
-                    return yAxisLabels[val - 1];
-                },
-            },
-        },
-        fill: {
-            colors: ['#1f77b4'],
-        },
-        tooltip: {
-            x: {
-                format: 'yyyy-MM-dd HH:mm',
-            },
-        },
-    };
-    const options2: ApexOptions = {
-        chart: {
-            type: 'bar',
-            height: 200,
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        xaxis: {
-            type: 'datetime',
-            categories: chartData2.map(item => item.x),
-        },
-        yaxis: {
-            labels: {
-                formatter: function (val: number) {
-                    return yAxisLabels[val - 1];
-                },
-            },
-        },
-        fill: {
-            colors: ['#1f77b4'],
-        },
-        tooltip: {
-            x: {
-                format: 'yyyy-MM-dd HH:mm',
-            },
-        },
-    };
+  const createSeries = (chartData: any[]) => {
+    return [
+      {
+        data: chartData.map((item) => ({
+          x: item.x,
+          y: item.y,
+        })),
+      },
+    ];
+  };
 
-    return (
-        <div className='card'>
-            <div className="sub-title">미세먼지 시간별 그래프</div>
-            <ApexChart options={options1} series={[{ data: data?.map((e) => parseFloat(e.pm10Grade)) ?? [] }]} height={200} />
-            <ApexChart options={options2} series={[{ data: data?.map((e) => parseFloat(e.pm25Grade)) ?? [] }]} height={200} />
-        </div>
-    )
+  const createOptions = (chartData: any[], dateFormat: string): ApexOptions => {
+    return {
+      chart: {
+        type: "candlestick",
+      },
+      xaxis: {
+        type: "datetime",
+        categories: chartData.map((item) => item.x),
+        labels: {
+          formatter: formatDateTime,
+        },
+      },
+      yaxis: {
+        labels: {
+          formatter: (val: number) => yAxisLabels[val - 1],
+        },
+      },
+      fill: {
+        colors: chartData.map((item: any) => item.color),
+      },
+      tooltip: {
+        x: {
+          format: dateFormat,
+        },
+      },
+    };
+  };
+
+  const chartData1 = createChartData(data, "pm10Grade");
+  const chartData2 = createChartData(data, "pm25Grade");
+
+  const series1 = createSeries(chartData1);
+  const series2 = createSeries(chartData2);
+
+  const options1: ApexOptions = createOptions(chartData1, "MM-dd HH:mm");
+  const options2: ApexOptions = createOptions(chartData2, "MM-dd HH:mm");
+  console.log(options1);
+  console.log(series1);
+
+  return (
+    <div className="card">
+      <div className="sub-title">미세먼지 시간별 그래프</div>
+      <ApexChart options={options1} series={series1} height={200} />
+      <ApexChart options={options2} series={series2} height={200} />
+    </div>
+  );
 }
 
 export default AirStateCharts;

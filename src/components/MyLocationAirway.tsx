@@ -66,12 +66,11 @@ const MyLocationAirway = () => {
       setIsMobileSize(newSize);
     }
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
-
   }, []);
   const { isLoading: isLoadingStation, data: measureStation } = useQuery(
     ["measureStation", point],
@@ -110,24 +109,25 @@ const MyLocationAirway = () => {
       {!isLoadingStation && !isLoadingInfo && airAreaInfo && !error ? (
         <>
           <div className="card">
-            <div className="sub-title">
-              요약
-            </div>
+            <div className="sub-title">요약</div>
             <div className="air-quality-sec">
               <div className="air-quality-sum">
-                현재 <b>{addr}(관측지역 : {stationName} 관측소)</b>의 <br/>
-                통합환경대기지수는 
-                <b>{airAreaInfo[0].khaiValue}</b>이며,
-                "<b>{GradeAirValue(airAreaInfo[0].khaiGrade)}</b>" 입니다.<br/>
-                {
-                  GradeAirValue(airAreaInfo[0].khaiGrade) === "좋음"
+                현재{" "}
+                <b>
+                  {addr}(관측지역 : {stationName} 관측소)
+                </b>
+                의 <br />
+                통합환경대기지수는&nbsp;
+                <b>{airAreaInfo[0].khaiValue}</b>이며, "
+                <b>{GradeAirValue(airAreaInfo[0].khaiGrade)}</b>" 입니다.
+                <br />
+                {GradeAirValue(airAreaInfo[0].khaiGrade) === "좋음"
                   ? "공기가 매우 깨끗한 날입니다. 외출하기 좋은 날씨입니다."
                   : GradeAirValue(airAreaInfo[0].khaiGrade) === "보통"
                   ? "외출하실 때 마스크를 준비해주세요. 조금 더 신경써야 할 때입니다"
                   : GradeAirValue(airAreaInfo[0].khaiGrade) === "나쁨"
                   ? "마스크를 착용하고 외출하세요. 공기가 좋지 않은 날입니다."
-                  :  "실외활동을 최대한 피하세요. 매우 나쁜 환경입니다."
-                }
+                  : "실외활동을 최대한 피하세요. 매우 나쁜 환경입니다."}
               </div>
             </div>
           </div>
@@ -140,7 +140,9 @@ const MyLocationAirway = () => {
                   <span className="air-quality-grade">
                     {GradeAirValue(airAreaInfo[0].khaiGrade)}
                   </span>
-                  <span className="air-quality-index">통합대기환경지수(CAI)</span>
+                  <span className="air-quality-index">
+                    통합대기환경지수(CAI)
+                  </span>
                 </div>
               </div>
               <div className="air-quality-bar">
@@ -158,9 +160,7 @@ const MyLocationAirway = () => {
                 >
                   info
                 </span>
-                <span>
-                  통합대기환경지수(CAI)
-                </span>
+                <span>통합대기환경지수(CAI)</span>
               </div>
             </div>
           </div>
@@ -171,68 +171,88 @@ const MyLocationAirway = () => {
             <div className="air-quality-sec circles-area">
               <div className="air-quality-item">
                 <div className="air-quality-range">
-                  <CircularSlider type="pm10" grade={airAreaInfo[0].pm10Grade} value={airAreaInfo[0].pm10Value} maxValue={250} isMobileSize={isMobileSize} />
-                  <span className={isMobileSize ? 'air-value-sm co' : ''}>{airAreaInfo[0].pm10Value}</span>
+                  <CircularSlider
+                    type="pm10"
+                    grade={airAreaInfo[0].pm10Grade}
+                    value={airAreaInfo[0].pm10Value}
+                    maxValue={250}
+                    isMobileSize={isMobileSize}
+                  />
+                  <span className={isMobileSize ? "air-value-sm co" : ""}>
+                    {airAreaInfo[0].pm10Value}
+                  </span>
                 </div>
-                <div className={isMobileSize ? 'air-quality-txt sm' : 'air-quality-txt'}>
+                <div
+                  className={
+                    isMobileSize ? "air-quality-txt sm" : "air-quality-txt"
+                  }
+                >
                   <div className="state-info">
                     <h2>
-                      {
-                        airAreaInfo[0].pm10Value < 31 
+                      {airAreaInfo[0].pm10Value < 31
                         ? "좋음"
                         : airAreaInfo[0].pm10Value < 81
                         ? "보통"
                         : airAreaInfo[0].pm10Value < 151
                         ? "나쁨"
-                        : "매우나쁨"
-                      }
+                        : "매우나쁨"}
                     </h2>
                     <p className="air_type">미세먼지 (PM10)</p>
-                    <p className="air_num_data">{airAreaInfo[0].pm10Value}㎍/㎥</p>
+                    <p className="air_num_data">
+                      {airAreaInfo[0].pm10Value}㎍/㎥
+                    </p>
                     <p className="sum_txt">
-                      {
-                        airAreaInfo[0].pm10Value < 31 
+                      {airAreaInfo[0].pm10Value < 31
                         ? "실외활동하기 좋은 날입니다."
                         : airAreaInfo[0].pm10Value < 81
                         ? "외출하기에 적당한 날씨입니다."
                         : airAreaInfo[0].pm10Value < 151
                         ? "마스크를 착용하고 외출하세요."
-                        : "실외활동을 피하세요."
-                      }
+                        : "실외활동을 피하세요."}
                     </p>
                   </div>
                 </div>
               </div>
               <div className="air-quality-item">
                 <div className="air-quality-range">
-                  <CircularSlider type="pm25" grade={airAreaInfo[0].pm25Grade} value={airAreaInfo[0].pm25Value} maxValue={250} isMobileSize={isMobileSize} />
-                  <span className={isMobileSize ? 'air-value-sm co' : ''}>{airAreaInfo[0].pm25Value}</span>
+                  <CircularSlider
+                    type="pm25"
+                    grade={airAreaInfo[0].pm25Grade}
+                    value={airAreaInfo[0].pm25Value}
+                    maxValue={250}
+                    isMobileSize={isMobileSize}
+                  />
+                  <span className={isMobileSize ? "air-value-sm co" : ""}>
+                    {airAreaInfo[0].pm25Value}
+                  </span>
                 </div>
-                <div className={isMobileSize ? 'air-quality-txt sm' : 'air-quality-txt'}>
+                <div
+                  className={
+                    isMobileSize ? "air-quality-txt sm" : "air-quality-txt"
+                  }
+                >
                   <div className="state-info">
                     <h2>
-                      {
-                        airAreaInfo[0].pm25Value < 16
+                      {airAreaInfo[0].pm25Value < 16
                         ? "좋음"
                         : airAreaInfo[0].pm25Value < 36
                         ? "보통"
                         : airAreaInfo[0].pm25Value < 76
                         ? "나쁨"
-                        : "매우나쁨"
-                      }
+                        : "매우나쁨"}
                     </h2>
                     <p className="air_type">초미세먼지 (PM2.5)</p>
-                    <p className="air_num_data">{airAreaInfo[0].pm25Value}㎍/㎥</p>
+                    <p className="air_num_data">
+                      {airAreaInfo[0].pm25Value}㎍/㎥
+                    </p>
                     <p className="sum_txt">
-                      {
-                        airAreaInfo[0].pm25Value < 16
+                      {airAreaInfo[0].pm25Value < 16
                         ? "공기가 맑은 하루입니다."
                         : airAreaInfo[0].pm25Value < 36
                         ? "외출에는 조심해야 할 수 있습니다."
                         : airAreaInfo[0].pm25Value < 76
                         ? "마스크를 착용하고 외출하세요."
-                        : "실외활동을 피하세요."
-                      }
+                        : "실외활동을 피하세요."}
                     </p>
                   </div>
                 </div>
@@ -240,27 +260,29 @@ const MyLocationAirway = () => {
             </div>
           </div>
           <div className="card">
-            <div className="sub-title">
-              대기정보
-            </div>
+            <div className="sub-title">대기정보</div>
             <div className="air-quality-sec circles-area-sm">
               <div className="air-quality-item">
                 <div className="air-quality-range">
-                  <CircularSlider type="o3" grade={airAreaInfo[0].o3Grade} value={airAreaInfo[0].o3Value} maxValue={0.2} isMobileSize={isMobileSize} />
+                  <CircularSlider
+                    type="o3"
+                    grade={airAreaInfo[0].o3Grade}
+                    value={airAreaInfo[0].o3Value}
+                    maxValue={0.2}
+                    isMobileSize={isMobileSize}
+                  />
                   <span className="air-value-sm">{airAreaInfo[0].o3Value}</span>
                 </div>
                 <div className="air-quality-txt sm">
                   <div className="state-info">
                     <h2>
-                      {
-                        airAreaInfo[0].o3Value < 0.03
+                      {airAreaInfo[0].o3Value < 0.03
                         ? "좋음"
                         : airAreaInfo[0].o3Value < 0.09
                         ? "보통"
                         : airAreaInfo[0].o3Value < 0.15
                         ? "나쁨"
-                        : "매우나쁨"
-                      }
+                        : "매우나쁨"}
                     </h2>
                     <p className="air_type">오존 (O₃)</p>
                     <p className="air_num_data">{airAreaInfo[0].o3Value}ppm</p>
@@ -269,21 +291,27 @@ const MyLocationAirway = () => {
               </div>
               <div className="air-quality-item">
                 <div className="air-quality-range">
-                  <CircularSlider type="so2" grade={airAreaInfo[0].so2Grade} value={airAreaInfo[0].so2Value} maxValue={0.2} isMobileSize={isMobileSize} />
-                  <span className="air-value-sm">{airAreaInfo[0].so2Value}</span>
+                  <CircularSlider
+                    type="so2"
+                    grade={airAreaInfo[0].so2Grade}
+                    value={airAreaInfo[0].so2Value}
+                    maxValue={0.2}
+                    isMobileSize={isMobileSize}
+                  />
+                  <span className="air-value-sm">
+                    {airAreaInfo[0].so2Value}
+                  </span>
                 </div>
                 <div className="air-quality-txt sm">
                   <div className="state-info">
                     <h2>
-                      {
-                        airAreaInfo[0].so2Value < 0.021
+                      {airAreaInfo[0].so2Value < 0.021
                         ? "좋음"
                         : airAreaInfo[0].so2Value < 0.051
                         ? "보통"
                         : airAreaInfo[0].so2Value < 0.151
                         ? "나쁨"
-                        : "매우나쁨"
-                      }
+                        : "매우나쁨"}
                     </h2>
                     <p className="air_type">아황산가스 (SO₂)</p>
                     <p className="air_num_data">{airAreaInfo[0].so2Value}ppm</p>
@@ -292,21 +320,27 @@ const MyLocationAirway = () => {
               </div>
               <div className="air-quality-item">
                 <div className="air-quality-range">
-                  <CircularSlider type="co" grade={airAreaInfo[0].coGrade} value={airAreaInfo[0].coValue} maxValue={20} isMobileSize={isMobileSize} />
-                  <span className="air-value-sm co">{airAreaInfo[0].coValue}</span>
+                  <CircularSlider
+                    type="co"
+                    grade={airAreaInfo[0].coGrade}
+                    value={airAreaInfo[0].coValue}
+                    maxValue={20}
+                    isMobileSize={isMobileSize}
+                  />
+                  <span className="air-value-sm co">
+                    {airAreaInfo[0].coValue}
+                  </span>
                 </div>
                 <div className="air-quality-txt sm">
                   <div className="state-info">
                     <h2>
-                      {
-                        airAreaInfo[0].coValue < 2.01
+                      {airAreaInfo[0].coValue < 2.01
                         ? "좋음"
                         : airAreaInfo[0].coValue < 9.01
                         ? "보통"
                         : airAreaInfo[0].coValue < 15.01
                         ? "나쁨"
-                        : "매우나쁨"
-                      }
+                        : "매우나쁨"}
                     </h2>
                     <p className="air_type">일산화탄소 (CO)</p>
                     <p className="air_num_data">{airAreaInfo[0].coValue}ppm</p>
@@ -315,21 +349,27 @@ const MyLocationAirway = () => {
               </div>
               <div className="air-quality-item">
                 <div className="air-quality-range">
-                  <CircularSlider type="no2" grade={airAreaInfo[0].no2Grade} value={airAreaInfo[0].no2Value} maxValue={0.3} isMobileSize={isMobileSize} />
-                  <span className="air-value-sm no2">{airAreaInfo[0].no2Value}</span>
+                  <CircularSlider
+                    type="no2"
+                    grade={airAreaInfo[0].no2Grade}
+                    value={airAreaInfo[0].no2Value}
+                    maxValue={0.3}
+                    isMobileSize={isMobileSize}
+                  />
+                  <span className="air-value-sm no2">
+                    {airAreaInfo[0].no2Value}
+                  </span>
                 </div>
                 <div className="air-quality-txt sm">
                   <div className="state-info">
                     <h2>
-                      {
-                        airAreaInfo[0].no2Value < 0.0301
+                      {airAreaInfo[0].no2Value < 0.0301
                         ? "좋음"
                         : airAreaInfo[0].no2Value < 0.0601
                         ? "보통"
                         : airAreaInfo[0].no2Value < 0.201
                         ? "나쁨"
-                        : "매우나쁨"
-                      }
+                        : "매우나쁨"}
                     </h2>
                     <p className="air_type">이산화질소 (NO₂)</p>
                     <p className="air_num_data">{airAreaInfo[0].no2Value}ppm</p>
@@ -338,11 +378,14 @@ const MyLocationAirway = () => {
               </div>
             </div>
           </div>
-          <AirStateCharts data={airAreaInfo}/>
+          <AirStateCharts data={airAreaInfo} />
         </>
       ) : (
         <div className="card">
-          <p className="info_txt">※ 사용자 위치정보 제공을 허용해주실 경우 현재 위치의 대기정보 서비스 이용이 가능합니다.</p>
+          <p className="info_txt">
+            ※ 사용자 위치정보 제공을 허용해주실 경우 현재 위치의 대기정보 서비스
+            이용이 가능합니다.
+          </p>
         </div>
       )}
       <AirPopup isPopOpen={isPopOpen} onClose={closePopup} itemCode={"CAI"} />
