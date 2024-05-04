@@ -141,6 +141,9 @@
   font-weight: 600;
   margin:0 18px;
 }
+svg:not(:root) {
+  overflow: visible;
+}
 @media (max-width: 768px){
   .card .air-quality-sec.circles-area{
     height:204px;

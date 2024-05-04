@@ -10,13 +10,6 @@ interface IAirDataItem {
 function AirStateCharts({ data }: IAirDataItem) {
   const yAxisLabels = ["좋음", "보통", "나쁨", "매우 나쁨"];
 
-  const gradeMap: { [key: string]: string } = {
-    "1": "좋음",
-    "2": "보통",
-    "3": "나쁨",
-    "4": "매우 나쁨",
-  };
-
   const gradeColorMap: { [key: string]: string } = {
     "1": "#1f77b4",
     "2": "#2ca02c",
@@ -54,15 +47,21 @@ function AirStateCharts({ data }: IAirDataItem) {
         data: chartData.map((item) => ({
           x: item.x,
           y: item.y,
+          color: item.color,
         })),
       },
     ];
   };
 
-  const createOptions = (chartData: any[], dateFormat: string): ApexOptions => {
+  const createOptions = (
+    chartData: any[],
+    dateFormat: string,
+    airState: string,
+  ): ApexOptions => {
+    
     return {
       chart: {
-        type: "candlestick",
+        type: "bar",
       },
       xaxis: {
         type: "datetime",
@@ -72,12 +71,17 @@ function AirStateCharts({ data }: IAirDataItem) {
         },
       },
       yaxis: {
-        labels: {
-          formatter: (val: number) => yAxisLabels[val - 1],
+        title: {
+          text: airState === "pm10" ? "미세먼지( pm10 )" : "초미세먼지( pm2.5 )",
         },
+        labels: {
+          formatter: (val: number) => yAxisLabels[val - 1], // Y 축 레이블 설정
+        },
+        min:1,
+        max:4,
       },
       fill: {
-        colors: chartData.map((item: any) => item.color),
+        colors: chartData.map((item: any) => item.color), // 각 레이블에 대한 색상 지정
       },
       tooltip: {
         x: {
@@ -86,6 +90,7 @@ function AirStateCharts({ data }: IAirDataItem) {
       },
     };
   };
+  
 
   const chartData1 = createChartData(data, "pm10Grade");
   const chartData2 = createChartData(data, "pm25Grade");
@@ -93,16 +98,16 @@ function AirStateCharts({ data }: IAirDataItem) {
   const series1 = createSeries(chartData1);
   const series2 = createSeries(chartData2);
 
-  const options1: ApexOptions = createOptions(chartData1, "MM-dd HH:mm");
-  const options2: ApexOptions = createOptions(chartData2, "MM-dd HH:mm");
-  console.log(options1);
-  console.log(series1);
+  const options1: ApexOptions = createOptions(chartData1, "MM-dd HH:mm", "pm10");
+  const options2: ApexOptions = createOptions(chartData2, "MM-dd HH:mm", "pm25");
 
   return (
     <div className="card">
       <div className="sub-title">미세먼지 시간별 그래프</div>
-      <ApexChart options={options1} series={series1} height={200} />
-      <ApexChart options={options2} series={series2} height={200} />
+      <div style={{paddingLeft:40}}>
+        <ApexChart options={options1} series={series1} type="bar" height={200} />
+        <ApexChart options={options2} series={series2} type="bar" height={200} />
+      </div>
     </div>
   );
 }
