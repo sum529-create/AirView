@@ -47,7 +47,7 @@ function AirStateCharts({ data }: IAirDataItem) {
         data: chartData.map((item) => ({
           x: item.x,
           y: item.y,
-          color: item.color,
+          fillColor: item.color,
         })),
       },
     ];
@@ -63,6 +63,14 @@ function AirStateCharts({ data }: IAirDataItem) {
       chart: {
         type: "bar",
       },
+      responsive: [{
+        breakpoint: 768,
+        options: {
+          chart: {
+              width: '100%' // 모바일 화면에 대한 차트 너비 설정
+            }
+        }
+      }],
       xaxis: {
         type: "datetime",
         categories: chartData.map((item) => item.x),
@@ -72,16 +80,26 @@ function AirStateCharts({ data }: IAirDataItem) {
       },
       yaxis: {
         title: {
-          text: airState === "pm10" ? "미세먼지( pm10 )" : "초미세먼지( pm2.5 )",
+          text: airState === "pm10"
+            ? "미세먼지( pm10 )"
+            : airState === "pm25"
+              ? "초미세먼지( pm2.5 )"
+              : airState === "o3"
+                ? "오존( O₃ )"
+                : airState === "so2"
+                  ? "아황산가스( SO₂ )"
+                  : airState === "co"
+                    ? "일산화탄소( CO )"
+                    : airState === "no2"
+                      ? "이산화질소( NO₂ )"
+                      : '-'
+            ,
         },
         labels: {
           formatter: (val: number) => yAxisLabels[val - 1], // Y 축 레이블 설정
         },
-        min:1,
+        min:0,
         max:4,
-      },
-      fill: {
-        colors: chartData.map((item: any) => item.color), // 각 레이블에 대한 색상 지정
       },
       tooltip: {
         x: {
@@ -94,21 +112,44 @@ function AirStateCharts({ data }: IAirDataItem) {
 
   const chartData1 = createChartData(data, "pm10Grade");
   const chartData2 = createChartData(data, "pm25Grade");
+  const chartData3 = createChartData(data, "o3Grade");
+  const chartData4 = createChartData(data, "so2Grade");
+  const chartData5 = createChartData(data, "coGrade");
+  const chartData6 = createChartData(data, "no2Grade");
 
   const series1 = createSeries(chartData1);
   const series2 = createSeries(chartData2);
+  const series3 = createSeries(chartData3);
+  const series4 = createSeries(chartData4);
+  const series5 = createSeries(chartData5);
+  const series6 = createSeries(chartData6);
 
   const options1: ApexOptions = createOptions(chartData1, "MM-dd HH:mm", "pm10");
   const options2: ApexOptions = createOptions(chartData2, "MM-dd HH:mm", "pm25");
+  const options3: ApexOptions = createOptions(chartData3, "MM-dd HH:mm", "o3");
+  const options4: ApexOptions = createOptions(chartData4, "MM-dd HH:mm", "so2");
+  const options5: ApexOptions = createOptions(chartData5, "MM-dd HH:mm", "co");
+  const options6: ApexOptions = createOptions(chartData6, "MM-dd HH:mm", "no2");
 
   return (
-    <div className="card">
-      <div className="sub-title">미세먼지 시간별 그래프</div>
-      <div style={{paddingLeft:40}}>
-        <ApexChart options={options1} series={series1} type="bar" height={200} />
-        <ApexChart options={options2} series={series2} type="bar" height={200} />
+    <>
+      <div className="card">
+        <div className="sub-title">미세먼지 시간별 그래프</div>
+        <div style={{paddingLeft:40, width:'100%'}}>
+          <ApexChart options={options1} series={series1} type="bar" height={300} />
+          <ApexChart options={options2} series={series2} type="bar" height={300} />
+        </div>
       </div>
-    </div>
+      <div className="card">
+        <div className="sub-title">대기상태 시간별 그래프</div>
+        <div style={{paddingLeft:40, width:'100%'}}>
+          <ApexChart options={options3} series={series3} type="bar" height={200} />
+          <ApexChart options={options4} series={series4} type="bar" height={200} />
+          <ApexChart options={options5} series={series5} type="bar" height={200} />
+          <ApexChart options={options6} series={series6} type="bar" height={200} />
+        </div>
+      </div>
+    </>
   );
 }
 

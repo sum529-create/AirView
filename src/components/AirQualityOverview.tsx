@@ -112,7 +112,7 @@ const AirQualityArea = styled.div`
     position: relative;
     padding: 20px;
     margin-top: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 15px; 
     border-radius: 10px;
     display: inline-block;
     .sub-title {
@@ -121,8 +121,9 @@ const AirQualityArea = styled.div`
       line-height: 18px;
       margin: 10px 18px;
       color: #666;
+      word-break: keep-all;
       @media (max-width: 768px) {
-        font-size: 18px;
+        font-size: 16px;
       }
     }
     @media (max-width: 768px) {

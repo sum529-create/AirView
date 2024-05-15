@@ -145,7 +145,27 @@ svg:not(:root) {
   overflow: visible;
 }
 @media (max-width: 768px){
+  .card .air-quality-sec{
+    font-size: 14px;
+  }
   .card .air-quality-sec.circles-area{
     height:204px;
+  }
+  .card .air-quality-sec .air-quality-top h1 {
+    font-size: 34px;
+  }
+  .card .air-quality-sec .air-quality-top .air-quality-sub .air-quality-index, 
+  .card .air-quality-sec .air-quality-item .air-quality-txt.sm .state-info .air_type,
+  .card .air-quality-sec .air-quality-item .air-quality-txt .state-info .sum_txt {
+    font-size: 12px;
+  }
+  .card .air-quality-sec .air-quality-item .air-quality-txt .state-info h2{
+    font-size: 14px;
+  }
+  .card .cai-info, .card .air-quality-sec .air-quality-item .air-quality-txt.sm .state-info .air_num_data{
+    font-size: 10px;
+  }
+  .chart-container {
+    width: 100%;
   }
 }
