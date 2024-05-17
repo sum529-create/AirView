@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const axios = require("axios");
+const axiosInstance = require('./dist/axiosInstance').default; 
 const cors = require("cors");
 const app = express();
 const app2 = express();
@@ -57,7 +57,7 @@ app.get("/api/getMinuDustFrcstDspth", async (req, res) => {
   const url = `${API_URL}?servicekey=${process.env.REACT_APP_API_KEY}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&searchDate=${searchDate}&InformCode=${informCode}`;
 
   try {
-    const response = await axios.get(url);
+    const response = await axiosInstance.get(url);
     res.json(response.data);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -77,7 +77,7 @@ app2.get("/api/getCtprvnMesureLIst", async (req, res) => {
   const url = `${API_URL}?servicekey=${process.env.REACT_APP_API_KEY}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&itemCode=${itemCode}&dataGubun=${dataGubun}&searchCondition=${searchCondition}`;
 
   try {
-    const response = await axios.get(url);
+    const response = await axiosInstance.get(url);
     res.json(response.data);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -91,7 +91,7 @@ app3.get("/api/getCtprvnMesureSidoLIst", async (req, res) => {
   if (sidoName) {
     const url = `${API_URL}?serviceKey=${process.env.REACT_APP_API_KEY}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&sidoName=${sidoName}&searchCondition=${searchCondition}`;
     try {
-      const response = await axios.get(url);
+      const response = await axiosInstance.get(url);
       res.json(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -104,7 +104,7 @@ app4.get("/api/getNearbyMsrstnList", async (req, res) => {
   const { returnType, tmX, tmY, ver } = req.query;
   const url = `${API_URL}?serviceKey=${process.env.REACT_APP_API_KEY}&returnType=${returnType}&tmX=${tmX}&tmY=${tmY}&ver=${ver}`;
   try {
-    const response = await axios.get(url);
+    const response = await axiosInstance.get(url);
     res.json(response.data);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -117,7 +117,7 @@ app5.get("/api/getMsrstnAcctoRltmMesureDnsty", async (req, res) => {
     req.query;
   const url = `${API_URL}?serviceKey=${process.env.REACT_APP_API_KEY}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&stationName=${stationName}&dataTerm=${dataTerm}&ver=${ver}`;
   try {
-    const response = await axios.get(url);
+    const response = await axiosInstance.get(url);
     res.json(response.data);
   } catch (error) {
     console.error("Error fetching data:", error);

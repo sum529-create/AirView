@@ -1,10 +1,10 @@
-import axios from "axios";
 import { formateDate } from "../utils/helpers";
+import axiosInstance from "./axiosInstance";
 
 export async function fetchTxtInfo() {
   let today = formateDate(new Date(), 0);
   try {
-    const res = await axios.get(
+    const res = await axiosInstance.get(
       "http://localhost:5000/api/getMinuDustFrcstDspth",
       {
         params: {
@@ -32,7 +32,7 @@ export async function getCtprvnMesureLIst(
     if (selectedSubTab === 1) {
       return null;
     }
-    const res = await axios.get(
+    const res = await axiosInstance.get(
       "http://localhost:5001/api/getCtprvnMesureLIst",
       {
         params: {
@@ -61,7 +61,7 @@ export async function getCtprvnMesureSidoLIst(sidoName: string) {
     return null;
   }
   try {
-    const res = await axios.get(
+    const res = await axiosInstance.get(
       "http://localhost:5002/api/getCtprvnMesureSidoLIst",
       {
         params: {
@@ -85,7 +85,7 @@ export async function getNearbyMsrstnList(tmX: number, tmY: number) {
     return null;
   }
   try {
-    const res = await axios.get(
+    const res = await axiosInstance.get(
       "http://localhost:5003/api/getNearbyMsrstnList",
       {
         params: {
@@ -107,7 +107,7 @@ export async function getMsrstnAcctoRltmMesureDnsty(stationName: string) {
     return null;
   }
   try {
-    const res = await axios.get(
+    const res = await axiosInstance.get(
       "http://localhost:5004/api/getMsrstnAcctoRltmMesureDnsty",
       {
         params: {
