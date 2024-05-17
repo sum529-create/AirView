@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AirView/static/css/main.dbdc1789.css",
+    "main.js": "/AirView/static/js/main.dad77950.js",
+    "index.html": "/AirView/index.html",
+    "main.dbdc1789.css.map": "/AirView/static/css/main.dbdc1789.css.map",
+    "main.dad77950.js.map": "/AirView/static/js/main.dad77950.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dbdc1789.css",
+    "static/js/main.dad77950.js"
+  ]
+}
