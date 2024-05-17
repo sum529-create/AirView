@@ -1,0 +1,14 @@
+- AirView 프로젝트 사용법
+
+*** 서버 관련 정보 ***
+// glitch적용관련하여 axios를 server.js에 적용하지 못하니 axios를 별도로 관리하기 위하여 axiosInstance를 만듬
+
+// 특정 파일 컴파일
+// axiosInstance.ts를 js로 전환이 필요하여 사용
+tsc src/services/axiosInstance.ts --outDir dist --esModuleInterop
+
+// 노드 서버 배포
+node server.js
+
+*** gh-pages를 배포할때 ***
+npm run deploy
