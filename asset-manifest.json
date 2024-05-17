@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/AirView/static/css/main.dbdc1789.css",
-    "main.js": "/AirView/static/js/main.dad77950.js",
+    "main.css": "/AirView/static/css/main.8b014292.css",
+    "main.js": "/AirView/static/js/main.cc69fc25.js",
     "index.html": "/AirView/index.html",
-    "main.dbdc1789.css.map": "/AirView/static/css/main.dbdc1789.css.map",
-    "main.dad77950.js.map": "/AirView/static/js/main.dad77950.js.map"
+    "main.8b014292.css.map": "/AirView/static/css/main.8b014292.css.map",
+    "main.cc69fc25.js.map": "/AirView/static/js/main.cc69fc25.js.map"
   },
   "entrypoints": [
-    "static/css/main.dbdc1789.css",
-    "static/js/main.dad77950.js"
+    "static/css/main.8b014292.css",
+    "static/js/main.cc69fc25.js"
   ]
 }
