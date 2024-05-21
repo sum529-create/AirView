@@ -134,7 +134,7 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                       ? "0 ~ 0.02 ppm"
                       : itemCode === "CO"
                       ? "0 ~ 2.0 ppm"
-                      : itemCode === "NO2"
+                      : (itemCode === "NO2" || itemCode === "O3")
                       ? "0 ~ 0.03 ppm"
                       : itemCode === "CAI"
                       ? "0 ~ 50"
@@ -380,7 +380,12 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                   ? "0 ~ 0.02 ppm"
                   : itemCode === "CO"
                   ? "0 ~ 2.0 ppm"
-                  : "0 ~ 0.03 ppm"}
+                  : (itemCode === "NO2" || itemCode === "O3")
+                  ? "0 ~ 0.03 ppm"
+                  : itemCode === "CAI"
+                  ? "0 ~ 50"
+                  : ""
+                }
               </div>
               <img src={process.env.PUBLIC_URL + "/images/triangle_icon.png"} />
             </div>
@@ -396,7 +401,12 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                   ? "2.1 ~ 9.0 ppm"
                   : itemCode === "O3"
                   ? "0.031 ~ 0.09 ppm"
-                  : "0.031 ~ 0.06 ppm"}
+                  : itemCode === "NO2"
+                  ? "0.031 ~ 0.06 ppm"
+                  : itemCode === "CAI"
+                  ? "51 ~ 100"
+                  : ""
+                }
               </div>
               <img src={process.env.PUBLIC_URL + "/images/triangle_icon.png"} />
             </div>
@@ -412,23 +422,33 @@ const AirPopup: FC<PopupProps> = ({ isPopOpen, onClose, itemCode }) => {
                   ? "9,1 ~ 15.0 ppm"
                   : itemCode === "O3"
                   ? "0.091 ~ 0.15 ppm"
-                  : "0.061 ~ 0.2 ppm"}
+                  : itemCode === "NO2"
+                  ? "0.061 ~ 0.2 ppm"
+                  : itemCode === "CAI"
+                  ? "101 ~ 250"
+                  : ""
+                }
               </div>
               <img src={process.env.PUBLIC_URL + "/images/triangle_icon.png"} />
             </div>
             <div className="air_grade_verybad">
               <div className="air_grade_verybad_txt">
                 {itemCode === "PM10"
-                  ? "PM₁₀ 151(㎍/ m²)~"
+                  ? "PM₁₀ 151(㎍/ m²) ~"
                   : itemCode === "PM25"
-                  ? "PM₂․₅ 76(㎍/ m²)~"
+                  ? "PM₂․₅ 76(㎍/ m²) ~"
                   : itemCode === "SO2"
                   ? "0.151 ppm ~"
                   : itemCode === "CO"
-                  ? "15.1 ppm ~"
+                  ? "15.01 ppm ~"
                   : itemCode === "O3"
                   ? "0.151 ppm ~"
-                  : "0.201 ppm ~"}
+                  : itemCode === "NO2"
+                  ? "0.201 ppm ~"
+                  : itemCode === "CAI"
+                  ? "251 ~"
+                  : ""
+                }
               </div>
               <img src={process.env.PUBLIC_URL + "/images/triangle_icon.png"} />
             </div>
