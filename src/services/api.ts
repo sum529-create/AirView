@@ -1,5 +1,5 @@
 import { formateDate } from "../utils/helpers";
-import axiosInstance from "./axiosInstance";
+const axiosInstance = require('./axiosInstance');
 
 export async function fetchTxtInfo() {
   let today = formateDate(new Date(), 0);
