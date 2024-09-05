@@ -162,6 +162,7 @@ const MyLocationAirway = () => {
                   min="0"
                   max="400"
                   value={airAreaInfo[0].khaiValue !== "-" ? airAreaInfo[0].khaiValue : 0}
+                  readOnly
                 />
               </div>
               <div className="cai-info">

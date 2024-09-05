@@ -1,6 +1,7 @@
 {
   "name": "air-view",
   "version": "0.1.0",
+  "main": "index.tsx",
   "homepage": "https://sum529-create.github.io/AirView/",
   "private": true,
   "dependencies": {
@@ -16,9 +17,9 @@
     "leaflet": "^1.9.4",
     "proj4": "^2.11.0",
     "proj4leaflet": "^1.0.2",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-apexcharts": "^1.4.1",
-    "react-dom": "^18.2.0",
+    "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
     "react-leaflet": "^4.2.1",
     "react-query": "^3.39.3",
@@ -65,7 +66,6 @@
     "@types/react-leaflet": "^3.0.0",
     "concurrently": "^8.2.2",
     "gh-pages": "^6.1.1",
-    "node-sass": "^7.0.3",
     "sass": "^1.72.0",
     "sass-loader": "^14.1.1",
     "typescript": "^5.4.2"
