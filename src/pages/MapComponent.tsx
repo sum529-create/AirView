@@ -5,6 +5,7 @@ import AirQualityOverview from "../components/AirQualityOverview";
 import AirQualityList from "../components/AirQualityList";
 import TabAir from "../components/TabAir";
 import { useCallback, useState } from "react";
+import Footer from "../components/Footer";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -86,6 +87,7 @@ function MapCompnent() {
           selectedSubTab={selectedSubTab}
           getTomAirData={getTomAirData}
         />
+        <Footer/>
       </Section>
     </Container>
   );
