@@ -202,7 +202,7 @@ function AirQualityOverview({
     return <div>Loading...</div>; // isLoading 조건을 훅 아래로 이동
   }
 
-  const texts = airTotalInfo
+  const texts = airTotalInfo && airTotalInfo.length > 0
   ? [
       airTotalInfo[0].informOverall.replace(/※.*/, ''),
       airTotalInfo[0].informCause.replace(/※.*/, '')
