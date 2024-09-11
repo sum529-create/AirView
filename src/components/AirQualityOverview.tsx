@@ -208,14 +208,14 @@ function AirQualityOverview({
       airTotalInfo[0].informCause.replace(/※.*/, '')
     ]
   : [];
-  const images1 = airTotalInfo
+  const images1 = airTotalInfo && airTotalInfo.length > 0
     ? [
         airTotalInfo[0].imageUrl1,
         airTotalInfo[0].imageUrl2,
         airTotalInfo[0].imageUrl3,
       ]
     : [];
-  const images2 = airTotalInfo
+  const images2 = airTotalInfo && airTotalInfo.length > 0
     ? [
         airTotalInfo[0].imageUrl4,
         airTotalInfo[0].imageUrl5,
